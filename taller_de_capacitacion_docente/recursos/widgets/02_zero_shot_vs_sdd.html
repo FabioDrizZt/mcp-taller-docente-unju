@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget: Zero-Shot vs SDD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        dark: '#0f172a',
+                        editor: '#1e293b',
+                        primary: '#6366f1',
+                        danger: '#ef4444',
+                        success: '#10b981',
+                        warning: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .terminal { background-color: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; min-height: 250px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; overflow-y: auto; box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); }
+        
+        .cursor::after {
+            content: '█';
+            animation: blink 1s step-end infinite;
+            color: #6366f1;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .token-keyword { color: #c678dd; }
+        .token-type { color: #e5c07b; }
+        .token-func { color: #61afef; }
+        .token-comment { color: #64748b; font-style: italic; }
+        .token-error { background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; border-bottom: 2px dashed #ef4444; padding: 0 4px; }
+        .token-success { background-color: rgba(16, 185, 129, 0.2); color: #6ee7b7; padding: 0 4px; border-radius: 4px;}
+
+        .step-btn { transition: all 0.3s ease; }
+        .step-btn.locked { opacity: 0.4; cursor: not-allowed; filter: grayscale(1); }
+        .step-btn.active { box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); border-color: #10b981; }
+    </style>
+</head>
+<body class="p-8 flex flex-col items-center min-h-screen">
+
+    <header class="text-center mb-8 max-w-4xl">
+        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-primary mb-2">
+            El Colapso Zero-Shot vs. El Flujo SDD
+        </h1>
+        <p class="text-slate-400 text-lg">
+            Unidad 4: Por qué pedir todo "de una sola vez" genera alucinaciones, y cómo el Desarrollo Guiado por Especificaciones (SDD) lo soluciona mediante el andamiaje.
+        </p>
+    </header>
+
+    <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- COLUMNA IZQUIERDA: ZERO-SHOT -->
+        <div class="glass rounded-2xl p-6 relative flex flex-col">
+            <div class="absolute -top-3 -left-3 bg-danger text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
+                Anti-Patrón (Zero-Shot)
+            </div>
+            
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-slate-200 mb-2">1. Prompt Mágico</h2>
+                <p class="text-xs text-slate-400 mb-4">El docente solicita un simulador sin proveer el contexto del plan de estudios ni la rúbrica.</p>
+                <div class="bg-slate-800 p-3 rounded-lg border border-slate-600 text-sm italic text-slate-300">
+                    "Generá el código C++ para el examen sobre borrar elementos de un arreglo, hacelo rápido."
+                </div>
+            </div>
+
+            <button id="btn-zeroshot" onclick="runZeroShot()" class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg border border-slate-500 transition-all flex justify-center items-center gap-2 mb-6">
+                <i data-lucide="zap" class="text-yellow-400"></i> Ejecutar Zero-Shot
+            </button>
+
+            <h3 class="text-sm font-semibold text-slate-400 mb-2 flex items-center gap-2">
+                <i data-lucide="terminal" class="w-4 h-4"></i> Resultado de la IA (Alucinación)
+            </h3>
+            <div class="terminal flex-grow relative" id="term-zero">
+                <span class="text-slate-500">// Esperando ejecución...</span>
+            </div>
+        </div>
+
+
+        <!-- COLUMNA DERECHA: SDD -->
+        <div class="glass rounded-2xl p-6 relative flex flex-col border-l-4 border-l-success">
+            <div class="absolute -top-3 -left-3 bg-success text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
+                Patrón Recomendado (SDD)
+            </div>
+            
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-slate-200 mb-2">Flujo Guiado (Pipeline)</h2>
+                <p class="text-xs text-slate-400 mb-4">El Agente requiere que el docente construya el andamiaje antes de escribir código.</p>
+                
+                <div class="flex flex-col gap-3">
+                    <button id="sdd-step-1" onclick="completeStep1()" class="step-btn bg-slate-800 border border-slate-600 p-3 rounded-lg flex items-center gap-3 text-left hover:bg-slate-700">
+                        <div class="bg-blue-500/20 p-2 rounded-full text-blue-400"><i data-lucide="file-text" class="w-4 h-4"></i></div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-200">1. Inyectar Contexto</div>
+                            <div class="text-xs text-slate-400">Adjuntar: Programa Analítico y Restricciones (No usar punteros).</div>
+                        </div>
+                        <i data-lucide="check-circle" class="ml-auto text-success opacity-0" id="check-1"></i>
+                    </button>
+                    
+                    <button id="sdd-step-2" onclick="completeStep2()" class="step-btn locked bg-slate-800 border border-slate-600 p-3 rounded-lg flex items-center gap-3 text-left hover:bg-slate-700">
+                        <div class="bg-purple-500/20 p-2 rounded-full text-purple-400"><i data-lucide="book-open" class="w-4 h-4"></i></div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-200">2. Cargar Skill de Corrección</div>
+                            <div class="text-xs text-slate-400">Adjuntar: Rúbrica institucional y formato de salida deseado.</div>
+                        </div>
+                        <i data-lucide="check-circle" class="ml-auto text-success opacity-0" id="check-2"></i>
+                    </button>
+
+                    <button id="sdd-step-3" onclick="runSDD()" class="step-btn locked bg-success/20 border border-success p-3 rounded-lg flex items-center justify-center gap-2 text-success hover:bg-success/30 font-bold">
+                        <i data-lucide="play" class="w-5 h-5"></i> 3. Luz Verde (Generar Código Validado)
+                    </button>
+                </div>
+            </div>
+
+            <h3 class="text-sm font-semibold text-slate-400 mb-2 flex items-center gap-2 mt-2">
+                <i data-lucide="terminal" class="w-4 h-4"></i> Resultado de la IA (Alineado)
+            </h3>
+            <div class="terminal flex-grow relative" id="term-sdd">
+                <span class="text-slate-500">// Esperando especificación docente...</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Máquina de escribir simple
+        async function typeText(elementId, htmlContent, speed = 20) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = '<span class="cursor"></span>';
+            const cursor = el.querySelector('.cursor');
+            
+            // Convert HTML to raw text + tags arrays to type smoothly without breaking HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            
+            el.innerHTML = '';
+            
+            // To simulate typing HTML, we'll just inject chunks rapidly, 
+            // but for a true typewriter effect with HTML, it's complex.
+            // We will use a trick: hide everything, reveal one character at a time.
+            
+            el.innerHTML = htmlContent + '<span class="cursor"></span>';
+            const allTextNodes = [];
+            
+            const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+            let n;
+            while(n = walk.nextNode()) {
+                allTextNodes.push(n);
+            }
+
+            // Hide text
+            const textStates = allTextNodes.map(node => {
+                const text = node.textContent;
+                node.textContent = '';
+                return { node, text, index: 0 };
+            });
+
+            for(let state of textStates) {
+                while(state.index < state.text.length) {
+                    state.node.textContent += state.text[state.index];
+                    state.index++;
+                    await new Promise(r => setTimeout(r, speed));
+                }
+            }
+        }
+
+        const zeroShotCode = `
+<span class="token-comment">// IA: ¡Claro! Aquí tienes la solución más moderna en C++.</span><br>
+<span class="token-keyword">#include</span> <span class="token-error" title="Alucinación: Uso de librería estándar de plantillas (STL) no enseñada en la unidad">&lt;vector&gt;</span><br><br>
+<span class="token-type">void</span> <span class="token-func">removerItem</span>(<span class="token-error" title="Violación de regla: Uso de vectores dinámicos en lugar de arreglos estáticos (int arr[])">std::vector&lt;int&gt;&</span> arr) {<br>
+&nbsp;&nbsp;<span class="token-comment">// Oculta completamente la lógica algorítmica del desplazamiento</span><br>
+&nbsp;&nbsp;<span class="token-error" title="Error Pedagógico: Abstracción prematura. Impide evaluar el razonamiento del alumno sobre el Shift-Left">arr.erase(arr.begin() + 2);</span><br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="token-comment">// ERROR: El alumno no aprende ni practica ciclos ni manipulación de índices.</span><br>
+}
+`;
+
+        const sddCode = `
+<span class="token-comment">// IA: Contexto recibido. Reglas de Algoritmos aplicadas.</span><br>
+<span class="token-comment">// Generando código con paso por referencia (sin punteros).</span><br><br>
+<span class="token-success">void</span> <span class="token-func">ClausurarSector</span>(<span class="token-success">int arr[]</span>, <span class="token-success">int &tam</span>) {<br>
+&nbsp;&nbsp;<span class="token-type">int</span> pos = 2; <span class="token-comment">// Sector a clausurar</span><br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="token-comment">// Shift-left validado (Desplazamiento in-place)</span><br>
+&nbsp;&nbsp;<span class="token-keyword">for</span>(<span class="token-type">int</span> i = pos; i &lt; tam - 1; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;arr[i] = arr[i+1];<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="token-success">tam--;</span> <span class="token-comment">// Actualización lógica correcta del tamaño</span><br>
+}
+`;
+
+        function runZeroShot() {
+            const btn = document.getElementById('btn-zeroshot');
+            btn.disabled = true;
+            btn.innerHTML = `<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Generando...`;
+            lucide.createIcons();
+            
+            document.getElementById('term-zero').innerHTML = '';
+            
+            typeText('term-zero', zeroShotCode, 10).then(() => {
+                btn.innerHTML = `<i data-lucide="x-circle" class="w-5 h-5"></i> Fallo de Coherencia`;
+                btn.classList.replace('bg-slate-700', 'bg-danger');
+                lucide.createIcons();
+            });
+        }
+
+        // Flujo SDD
+        let sddStep = 1;
+        
+        function completeStep1() {
+            if(sddStep !== 1) return;
+            document.getElementById('check-1').style.opacity = '1';
+            document.getElementById('sdd-step-1').classList.add('active');
+            
+            document.getElementById('term-sdd').innerHTML = '<span class="text-blue-400">// Contexto inyectado. La IA ahora conoce el plan de estudios.</span>';
+            
+            const step2 = document.getElementById('sdd-step-2');
+            step2.classList.remove('locked');
+            sddStep = 2;
+        }
+
+        function completeStep2() {
+            if(sddStep !== 2) return;
+            document.getElementById('check-2').style.opacity = '1';
+            document.getElementById('sdd-step-2').classList.add('active');
+            
+            document.getElementById('term-sdd').innerHTML += '<br><span class="text-purple-400">// Skill cargada. La IA aplicará la rúbrica institucional. Esperando Luz Verde...</span>';
+            
+            const step3 = document.getElementById('sdd-step-3');
+            step3.classList.remove('locked');
+            sddStep = 3;
+        }
+
+        function runSDD() {
+            if(sddStep !== 3) return;
+            
+            const btn = document.getElementById('sdd-step-3');
+            btn.innerHTML = `<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Generando de forma segura...`;
+            lucide.createIcons();
+            
+            typeText('term-sdd', sddCode, 10).then(() => {
+                btn.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5"></i> Examen Listo y Validado`;
+                lucide.createIcons();
+                sddStep = 4; // Done
+            });
+        }
+    </script>
+</body>
+</html>

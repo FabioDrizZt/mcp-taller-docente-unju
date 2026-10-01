@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget: Dashboard de Ritmo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        dark: '#0f172a',
+                        card: 'rgba(30, 41, 59, 0.7)',
+                        primary: '#6366f1',
+                        danger: '#ef4444',
+                        success: '#10b981',
+                        warning: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-profile { transition: all 0.3s ease; }
+        .btn-profile.active-procrastinator { background-color: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #fca5a5; box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
+        .btn-profile.active-iterative { background-color: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #6ee7b7; box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+        
+        /* Metric Cards Animations */
+        .metric-value { transition: color 0.5s ease; }
+    </style>
+</head>
+<body class="p-8 flex flex-col items-center min-h-screen">
+
+    <header class="text-center mb-8 max-w-4xl">
+        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-2">
+            La Anatomía del Ritmo
+        </h1>
+        <p class="text-slate-400 text-lg">
+            Unidad 6: Evaluar el resultado final vs evaluar el proceso de aprendizaje mediante entregas iterativas y <em>ClassMoji</em>.
+        </p>
+    </header>
+
+    <div class="w-full max-w-6xl glass rounded-3xl p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- PANEL IZQUIERDO: CONTROLES Y MÉTRICAS -->
+        <div class="flex flex-col justify-between h-full space-y-6">
+            
+            <div>
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-200">
+                    <i data-lucide="users" class="w-5 h-5 text-blue-400"></i> Perfiles de Estudiantes
+                </h2>
+                <div class="flex flex-col gap-4">
+                    <button id="btn-procrastinator" onclick="loadProfile('procrastinator')" class="btn-profile border border-slate-600 bg-slate-800 p-4 rounded-xl text-left hover:bg-slate-700">
+                        <div class="font-bold text-lg mb-1">Perfil A: El Procrastinador</div>
+                        <div class="text-xs text-slate-400">Trabajo nulo durante 13 días. Pico de ansiedad a las 3:00 AM del día de entrega.</div>
+                    </button>
+                    
+                    <button id="btn-iterative" onclick="loadProfile('iterative')" class="btn-profile active-iterative border border-slate-600 bg-slate-800 p-4 rounded-xl text-left hover:bg-slate-700">
+                        <div class="font-bold text-lg mb-1">Perfil B: El Iterativo</div>
+                        <div class="text-xs text-slate-400">Entregas regulares. Lee la retroalimentación del Agente y corrige gradualmente.</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard de Resultados -->
+            <div class="bg-slate-900 rounded-2xl p-6 border border-slate-700 shadow-inner">
+                <h3 class="text-sm uppercase tracking-wider text-slate-400 font-bold mb-4 border-b border-slate-700 pb-2">Evaluación del Sistema</h3>
+                
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <div class="text-slate-300 font-semibold">Nota de Funcionalidad</div>
+                        <div class="text-xs text-slate-500">¿El código final compila y funciona?</div>
+                    </div>
+                    <div class="text-3xl font-mono font-bold text-white">10<span class="text-lg text-slate-500">/10</span></div>
+                </div>
+
+                <div class="flex justify-between items-center bg-slate-800 p-4 rounded-xl border border-slate-600">
+                    <div>
+                        <div class="text-slate-200 font-bold flex items-center gap-2">
+                            <i data-lucide="activity" class="w-4 h-4"></i> Puntos de Ritmo
+                        </div>
+                        <div class="text-[10px] text-slate-400 mt-1 uppercase">Métrica del Proceso ClassMoji</div>
+                    </div>
+                    <div id="rhythm-score" class="text-4xl font-mono font-extrabold metric-value text-success">95</div>
+                </div>
+                
+                <div id="rhythm-alert" class="mt-3 text-xs text-center font-bold text-success animate-pulse">
+                    ✅ Excelente autorregulación metacognitiva.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PANEL DERECHO: GRÁFICO CHART.JS -->
+        <div class="lg:col-span-2 bg-slate-900 rounded-2xl p-6 border border-slate-700 shadow-inner flex flex-col">
+            <div class="flex justify-between items-end mb-4">
+                <h2 class="text-lg font-bold text-slate-200">Línea de Vida del Trabajo Práctico (14 Días)</h2>
+                <div class="flex gap-4 text-xs font-mono text-slate-400">
+                    <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-success"></span> Actividad Saludable</div>
+                    <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-danger"></span> Alerta de Ansiedad</div>
+                </div>
+            </div>
+            <div class="relative flex-grow w-full h-full min-h-[400px]">
+                <canvas id="rhythmChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Datos para los perfiles
+        const dataIterative = [0, 5, 10, 25, 25, 30, 45, 55, 60, 80, 85, 90, 95, 100];
+        const emojisIterative = ['', '', '', '🔥 +10 Tokens', '', '', '🛠️ Feedback leido', '', '', '🚀 Avance', '', '', '', '✅ Entregado'];
+        
+        const dataProcrastinator = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 100];
+        const emojisProcrastinator = ['', '', '', '', '', '', '', '', '', '', '', '', '⚠️ Pánico 3:00 AM', '⏳ Entregado al límite'];
+
+        const labels = ['Día 1', 'Día 2', 'Día 3', 'Día 4', 'Día 5', 'Día 6', 'Día 7', 'Día 8', 'Día 9', 'Día 10', 'Día 11', 'Día 12', 'Día 13', 'Día 14 (Cierre)'];
+
+        // Configuración de Chart.js
+        const ctx = document.getElementById('rhythmChart').getContext('2d');
+        
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.font.family = "'Inter', sans-serif";
+
+        let currentProfile = 'iterative';
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '% de Código Completado',
+                    data: dataIterative,
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#0f172a',
+                    pointBorderColor: '#10b981',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    fill: true,
+                    tension: 0.3 // Curvas suaves
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                        titleFont: { size: 14, family: "'Inter', sans-serif" },
+                        bodyFont: { size: 16, family: "'Inter', sans-serif", weight: 'bold' },
+                        padding: 12,
+                        borderColor: '#334155',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) { label += context.parsed.y + '%'; }
+                                return label;
+                            },
+                            afterBody: function(context) {
+                                const idx = context[0].dataIndex;
+                                const emoji = currentProfile === 'iterative' ? emojisIterative[idx] : emojisProcrastinator[idx];
+                                return emoji ? `\n💬 ClassMoji: ${emoji}` : '';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 105,
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: {
+                            callback: function(value) { return value + '%'; }
+                        }
+                    },
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+
+        // Lógica de cambio de perfil
+        function loadProfile(profile) {
+            currentProfile = profile;
+            const btnProc = document.getElementById('btn-procrastinator');
+            const btnIter = document.getElementById('btn-iterative');
+            const scoreEl = document.getElementById('rhythm-score');
+            const alertEl = document.getElementById('rhythm-alert');
+
+            btnProc.classList.remove('active-procrastinator');
+            btnIter.classList.remove('active-iterative');
+
+            if (profile === 'procrastinator') {
+                btnProc.classList.add('active-procrastinator');
+                
+                chart.data.datasets[0].data = dataProcrastinator;
+                chart.data.datasets[0].borderColor = '#ef4444';
+                chart.data.datasets[0].backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                chart.data.datasets[0].pointBorderColor = '#ef4444';
+                
+                scoreEl.textContent = '15';
+                scoreEl.className = 'text-4xl font-mono font-extrabold metric-value text-danger';
+                
+                alertEl.textContent = '⚠️ Alerta: Dependencia instrumental y anti-patrón de trabajo.';
+                alertEl.className = 'mt-3 text-xs text-center font-bold text-danger animate-pulse';
+                
+            } else {
+                btnIter.classList.add('active-iterative');
+                
+                chart.data.datasets[0].data = dataIterative;
+                chart.data.datasets[0].borderColor = '#10b981';
+                chart.data.datasets[0].backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                chart.data.datasets[0].pointBorderColor = '#10b981';
+                
+                scoreEl.textContent = '95';
+                scoreEl.className = 'text-4xl font-mono font-extrabold metric-value text-success';
+                
+                alertEl.textContent = '✅ Excelente autorregulación metacognitiva.';
+                alertEl.className = 'mt-3 text-xs text-center font-bold text-success animate-pulse';
+            }
+
+            chart.update();
+        }
+    </script>
+</body>
+</html>

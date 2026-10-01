@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget: Chatbot vs Agente MCP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        dark: '#0f172a',
+                        card: 'rgba(30, 41, 59, 0.7)',
+                        primary: '#6366f1',
+                        danger: '#ef4444',
+                        success: '#10b981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .zone { min-height: 120px; transition: background-color 0.3s; }
+        .zone.drag-over { background: rgba(99, 102, 241, 0.2); border-color: #6366f1; }
+        .draggable { cursor: grab; }
+        .draggable:active { cursor: grabbing; }
+        
+        .pipe-horizontal {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .particle {
+            position: absolute;
+            top: 0; left: 0;
+            width: 30px; height: 100%;
+            background: #10b981;
+            box-shadow: 0 0 15px 5px rgba(16, 185, 129, 0.6);
+            opacity: 0;
+        }
+        
+        /* Cognitive Load Bar Gradient */
+        #cog-bar { transition: width 0.3s ease, background-color 0.3s ease; }
+    </style>
+</head>
+<body class="p-8 flex flex-col items-center min-h-screen">
+
+    <header class="text-center mb-8 max-w-3xl">
+        <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-primary mb-2">
+            El Cuello de Botella del "Copy-Paste"
+        </h1>
+        <p class="text-slate-400 text-lg">
+            Unidad 1: Visualización del impacto en la Carga Cognitiva y el Tiempo al migrar de un Chatbot Manual a un Agente integrado vía MCP.
+        </p>
+    </header>
+
+    <!-- Panel de Métricas (Dashboard) -->
+    <div class="glass w-full max-w-5xl rounded-2xl p-6 mb-8 flex justify-around items-center">
+        <div class="flex flex-col w-1/3">
+            <span class="text-sm text-slate-400 uppercase font-semibold mb-2">Carga Cognitiva Docente</span>
+            <div class="w-full bg-slate-800 rounded-full h-4 overflow-hidden relative">
+                <div id="cog-bar" class="h-full bg-success w-[10%]"></div>
+            </div>
+            <span id="cog-text" class="text-xs text-slate-400 mt-1">Baja (Saludable)</span>
+        </div>
+        <div class="flex flex-col w-1/3 items-center">
+            <span class="text-sm text-slate-400 uppercase font-semibold mb-2">Tiempo Invertido</span>
+            <div class="text-3xl font-mono font-bold text-white"><span id="time-counter">0.0</span>s</div>
+        </div>
+    </div>
+
+    <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- MODO TRADICIONAL (CHATBOT) -->
+        <div class="glass rounded-2xl p-6 relative">
+            <div class="absolute -top-3 -left-3 bg-danger text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
+                Modo Tradicional (Manual)
+            </div>
+            <h2 class="text-xl font-semibold mb-6 text-center text-slate-200">1. Simula el Copy-Paste</h2>
+            
+            <div class="space-y-6">
+                <!-- Repositorio (Origen) -->
+                <div class="border-2 border-dashed border-slate-600 rounded-xl p-4 zone" id="zone-repo">
+                    <h3 class="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
+                        <i data-lucide="folder-git-2" class="w-4 h-4"></i> GitHub del Alumno
+                    </h3>
+                    <div id="file-code" class="draggable bg-slate-800 border border-slate-600 p-3 rounded-lg flex items-center gap-3 shadow hover:bg-slate-700 transition" draggable="true">
+                        <i data-lucide="file-code" class="text-blue-400"></i>
+                        <span>index.js (Código)</span>
+                        <i data-lucide="grip-vertical" class="ml-auto text-slate-500"></i>
+                    </div>
+                </div>
+
+                <!-- Chatbot Web -->
+                <div class="border-2 border-dashed border-slate-600 rounded-xl p-4 zone" id="zone-chat">
+                    <h3 class="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
+                        <i data-lucide="bot" class="w-4 h-4"></i> Chatbot Web (gemini.com)
+                    </h3>
+                    <div id="chat-empty" class="text-center text-slate-500 text-sm mt-4">
+                        Arrastra el código aquí
+                    </div>
+                </div>
+
+                <!-- Destino Final -->
+                <div class="border-2 border-dashed border-slate-600 rounded-xl p-4 zone opacity-50 pointer-events-none transition-all duration-300" id="zone-dest">
+                    <h3 class="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
+                        <i data-lucide="github" class="w-4 h-4"></i> Issue / PR de Devolución
+                    </h3>
+                    <div id="dest-empty" class="text-center text-slate-500 text-sm mt-4">
+                        Arrastra el feedback generado aquí
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODO AGENTE (MCP) -->
+        <div class="glass rounded-2xl p-6 relative flex flex-col justify-between">
+            <div class="absolute -top-3 -left-3 bg-success text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
+                Modo Agente (MCP)
+            </div>
+            <h2 class="text-xl font-semibold mb-6 text-center text-slate-200">2. Automatización (Tubería)</h2>
+            
+            <div class="flex-grow flex flex-col items-center justify-center space-y-4">
+                
+                <!-- Diagrama visual MCP -->
+                <div class="flex items-center w-full justify-between px-4">
+                    <div class="flex flex-col items-center gap-2 w-24">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-600 flex items-center justify-center text-blue-400">
+                            <i data-lucide="folder-git-2" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-xs text-slate-400">Repositorio</span>
+                    </div>
+
+                    <div class="flex-grow pipe-horizontal mx-2" id="pipe-1">
+                        <div class="particle" id="particle-1"></div>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-2 w-24 relative">
+                        <div id="agent-node" class="w-16 h-16 rounded-2xl bg-slate-800 border border-primary flex items-center justify-center text-primary shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all duration-300">
+                            <i data-lucide="cpu" class="w-8 h-8"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 bg-slate-700 text-[10px] px-2 py-0.5 rounded border border-slate-500 text-slate-300">MCP</div>
+                        <span class="text-xs text-slate-400">Agente</span>
+                    </div>
+
+                    <div class="flex-grow pipe-horizontal mx-2" id="pipe-2">
+                        <div class="particle" id="particle-2"></div>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-2 w-24">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-600 flex items-center justify-center text-emerald-400">
+                            <i data-lucide="message-square-text" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-xs text-slate-400">Feedback</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-8 flex justify-center">
+                <button id="btn-mcp" onclick="startMCP()" class="bg-primary hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] transition-all duration-300 flex items-center gap-2">
+                    <i data-lucide="play" class="w-5 h-5"></i> Luz Verde (Ejecutar)
+                </button>
+            </div>
+            
+            <div id="mcp-status" class="text-center text-sm text-success mt-4 opacity-0 font-mono">
+                [Logs] Operación completada en 1.2s
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Estado
+        let time = 0;
+        let timerInterval = null;
+        let cognitiveLoad = 10;
+        
+        const cogBar = document.getElementById('cog-bar');
+        const cogText = document.getElementById('cog-text');
+        const timeCounter = document.getElementById('time-counter');
+
+        function updateCogLoad(amount) {
+            cognitiveLoad = Math.min(100, cognitiveLoad + amount);
+            cogBar.style.width = `${cognitiveLoad}%`;
+            
+            if(cognitiveLoad < 40) {
+                cogBar.className = "h-full bg-success transition-all duration-300";
+                cogText.textContent = "Baja (Saludable)";
+            } else if (cognitiveLoad < 75) {
+                cogBar.className = "h-full bg-yellow-400 transition-all duration-300";
+                cogText.textContent = "Media (Riesgo de Fatiga)";
+            } else {
+                cogBar.className = "h-full bg-danger transition-all duration-300 shadow-[0_0_15px_rgba(239,68,68,0.8)]";
+                cogText.textContent = "Alta (Burnout Docente!)";
+            }
+        }
+
+        function startTimer() {
+            if(!timerInterval) {
+                timerInterval = setInterval(() => {
+                    time += 0.1;
+                    timeCounter.textContent = time.toFixed(1);
+                }, 100);
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        // --- LÓGICA DRAG AND DROP (Modo Manual) ---
+        const fileCode = document.getElementById('file-code');
+        const zoneChat = document.getElementById('zone-chat');
+        const zoneDest = document.getElementById('zone-dest');
+        const chatEmpty = document.getElementById('chat-empty');
+        const destEmpty = document.getElementById('dest-empty');
+
+        let draggedItem = null;
+
+        document.querySelectorAll('.draggable').forEach(item => {
+            item.addEventListener('dragstart', function(e) {
+                draggedItem = this;
+                setTimeout(() => this.classList.add('opacity-50'), 0);
+                startTimer(); // El tiempo corre en cuanto empieza el trabajo manual
+            });
+            item.addEventListener('dragend', function() {
+                this.classList.remove('opacity-50');
+            });
+        });
+
+        // Configurar zonas de drop
+        [zoneChat, zoneDest].forEach(zone => {
+            zone.addEventListener('dragover', e => {
+                e.preventDefault();
+                if(draggedItem) zone.classList.add('drag-over');
+            });
+            zone.addEventListener('dragleave', e => {
+                zone.classList.remove('drag-over');
+            });
+        });
+
+        // Drop en Chat
+        zoneChat.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            if(draggedItem && draggedItem.id === 'file-code') {
+                this.appendChild(draggedItem);
+                chatEmpty.style.display = 'none';
+                updateCogLoad(30); // Subir carga por mover contexto
+                
+                // Simular generación de la IA
+                draggedItem.classList.add('pointer-events-none', 'opacity-50');
+                let tempMsg = document.createElement('div');
+                tempMsg.className = "text-center text-sm text-primary mt-2 animate-pulse font-mono";
+                tempMsg.textContent = "Generando feedback...";
+                this.appendChild(tempMsg);
+                
+                setTimeout(() => {
+                    this.removeChild(tempMsg);
+                    draggedItem.remove(); // Desaparece el código original
+                    
+                    // Crear el objeto Feedback arrastrable
+                    let feedbackItem = document.createElement('div');
+                    feedbackItem.id = "file-feedback";
+                    feedbackItem.className = "draggable bg-emerald-900 border border-emerald-600 p-3 rounded-lg flex items-center gap-3 shadow hover:bg-emerald-800 transition text-emerald-100 mt-2";
+                    feedbackItem.draggable = true;
+                    feedbackItem.innerHTML = `<i data-lucide="message-square-text" class="text-emerald-400"></i><span>Feedback.md</span><i data-lucide="grip-vertical" class="ml-auto text-emerald-500"></i>`;
+                    
+                    this.appendChild(feedbackItem);
+                    lucide.createIcons();
+                    
+                    // Hacer el feedback arrastrable y habilitar la zona de destino
+                    feedbackItem.addEventListener('dragstart', function(e) { draggedItem = this; setTimeout(() => this.classList.add('opacity-50'), 0); });
+                    feedbackItem.addEventListener('dragend', function() { this.classList.remove('opacity-50'); });
+                    
+                    zoneDest.classList.remove('opacity-50', 'pointer-events-none');
+                    updateCogLoad(20); // Subir carga por tener que leer/copiar el output
+                }, 2000);
+            }
+        });
+
+        // Drop en Destino
+        zoneDest.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            if(draggedItem && draggedItem.id === 'file-feedback') {
+                this.appendChild(draggedItem);
+                destEmpty.style.display = 'none';
+                draggedItem.classList.remove('draggable');
+                draggedItem.draggable = false;
+                draggedItem.querySelector('.ml-auto').remove(); // quitar grip icon
+                
+                updateCogLoad(30); // Subir carga por hacer el commit/cierre
+                stopTimer();
+                
+                // Fin del modo manual
+                let alert = document.createElement('div');
+                alert.className = "text-center text-danger font-bold mt-4 animate-bounce";
+                alert.textContent = `¡Proceso completado con fatiga! (${time.toFixed(1)}s)`;
+                this.appendChild(alert);
+            }
+        });
+
+
+        // --- LÓGICA MODO AGENTE (GSAP) ---
+        function startMCP() {
+            // Resetear stats para comparación limpia
+            cognitiveLoad = 10;
+            updateCogLoad(0);
+            time = 0;
+            timeCounter.textContent = "0.0";
+            
+            const btn = document.getElementById('btn-mcp');
+            const status = document.getElementById('mcp-status');
+            const agentNode = document.getElementById('agent-node');
+            
+            btn.disabled = true;
+            btn.innerHTML = `<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Procesando...`;
+            lucide.createIcons();
+            
+            startTimer();
+
+            // Timeline de GSAP
+            let tl = gsap.timeline({
+                onComplete: () => {
+                    stopTimer();
+                    btn.disabled = false;
+                    btn.innerHTML = `<i data-lucide="play" class="w-5 h-5"></i> Luz Verde (Ejecutar)`;
+                    lucide.createIcons();
+                    
+                    status.textContent = `[Logs] Operación completada en ${time.toFixed(1)}s (Automatizado)`;
+                    gsap.to(status, {opacity: 1, y: -10, duration: 0.5});
+                    
+                    // La carga cognitiva apenas sube (sólo por supervisar)
+                    updateCogLoad(10);
+                }
+            });
+
+            // Animación Partícula 1 (Repo -> Agente)
+            tl.to("#particle-1", {
+                opacity: 1, duration: 0.1
+            })
+            .to("#particle-1", {
+                x: document.getElementById('pipe-1').offsetWidth, 
+                duration: 0.8, 
+                ease: "power1.inOut"
+            })
+            .to("#particle-1", {
+                opacity: 0, duration: 0.1
+            }, "-=0.1")
+            
+            // Pulso del Agente
+            .to(agentNode, {
+                scale: 1.1,
+                boxShadow: "0 0 30px rgba(99,102,241,0.8)",
+                duration: 0.2,
+                yoyo: true,
+                repeat: 3
+            })
+            
+            // Animación Partícula 2 (Agente -> Feedback)
+            .to("#particle-2", {
+                opacity: 1, duration: 0.1
+            })
+            .to("#particle-2", {
+                x: document.getElementById('pipe-2').offsetWidth, 
+                duration: 0.8, 
+                ease: "power1.inOut"
+            })
+            .to("#particle-2", {
+                opacity: 0, duration: 0.1
+            }, "-=0.1")
+            
+            // Reset particles for next time
+            .set(".particle", {x: 0});
+        }
+    </script>
+</body>
+</html>
