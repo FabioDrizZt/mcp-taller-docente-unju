@@ -47,7 +47,7 @@
 
 ## 4. Próximos Pasos Inmediatos (Roadmap 2do Semestre 2026)
 
-- [ ] **Hito 1 (Agosto 2026):** Dictado del Taller Docente Interno (07 y 08 de agosto, 10 hs).
-- [ ] **Hito 2 (Agosto – Septiembre 2026):** Expansión del pilotaje a *Algoritmos y Programación* e *Informática* (Robótica).
-- [ ] **Hito 3 (Septiembre – Octubre 2026):** Consolidación estadística inferencial de los Puntos de Ritmo vs. calificaciones finales.
-- [ ] **Hito 4 (Octubre 2026):** Redacción del Informe Final y preparación del artículo científico para congreso (WICC/CACIC).
+- [x] **Hito 1 (Agosto – Septiembre 2026):** Expansión del pilotaje a *Algoritmos y Programación* e *Informática* (Robótica).
+- [ ] **Hito 2 (02 y 03 de Octubre 2026 - EN CURSO):** Dictado del Taller de Capacitación Docente Interno sobre Agentes de IA y Protocolo MCP (10 hs).
+- [ ] **Hito 3 (Octubre - Noviembre 2026):** Consolidación estadística inferencial de los Puntos de Ritmo vs. calificaciones finales.
+- [ ] **Hito 4 (Diciembre 2026):** Redacción del Informe Final y preparación del artículo científico para congreso (WICC/CACIC).
