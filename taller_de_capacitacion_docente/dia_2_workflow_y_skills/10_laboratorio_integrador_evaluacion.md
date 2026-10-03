@@ -1,81 +1,83 @@
-# Laboratorio Integrador: Evaluación Asistida y Supervisada
+# Laboratorio Integrador: Creación del TP1 y Skill Evaluador Docente
 
 ## 🎯 Objetivo del Laboratorio
-Este es el "Jefe Final" del taller. Aplicarás todo lo aprendido en el Día 1 y el Día 2 para evaluar la entrega de un/a estudiante ficticio/a dentro de un entorno controlado, utilizando una Skill profesional y MCPs para asistir en la revisión técnica y preparar evidencias para la decisión docente.
+Consolidar todo lo aprendido durante el Día 1 y el Día 2 configurando el primer módulo de evaluación de tu propia materia. Diseñarás la consigna/rúbrica del **Trabajo Práctico 1** y construirás la **Skill de Evaluación Asistida**, logrando el **100% de aprobación** en el sistema de corrección continua (GitHub Actions / Autograder) y dejando tu cátedra lista para evaluar entregas reales.
 
-## 🛠️ Entorno de Simulación
+## 🛠️ Entorno de Trabajo
 - **Materia:** Tu propia materia estructurada en el repositorio.
-- **Tema:** Contenido práctico basado en la `planificacion.md` que creaste en el Día 1.
-- **Estudiante (Caso Simulado):** `Estudiante_Ejemplo_01` (Entrega del Trabajo Práctico 1).
-- **Herramientas a usar:** Tu IDE con IA (Antigravity / VS Code / Claude Dev / Cursor), MCP FileSystem activado, y tu repositorio de trabajo clonado a partir de [`plantilla-taller-docente-mcp`](https://github.com/Taller-de-Agentes-de-IA-en-docencia/plantilla-taller-docente-mcp).
+- **Contexto Base:** La `planificacion.md`, `AGENTS.md` y `MEMORY.md` creados en el Día 1.
+- **Herramientas:** Tu IDE con IA (Antigravity / VS Code / Cursor) y tu repositorio clonado de [`plantilla-taller-docente-mcp`](https://github.com/Taller-de-Agentes-de-IA-en-docencia/plantilla-taller-docente-mcp).
+- **Recursos de Apoyo:** Las plantillas de `/toolkit_docente` y los ejemplos reales de `/ejemplos_labs_interactivos`.
 
 ---
 
 ## 📊 Sistema de Puntuación (GitHub Actions & Autograder)
 
-El autograder oficial (`autograder_taller.py`) evalúa automáticamente la completitud de tu cátedra:
+El autograder oficial (`autograder_taller.py`) valida automáticamente la completitud de tu repositorio:
 
 | Fase | Requisito / Artefacto | Puntos | Estado |
 | :--- | :--- | :---: | :---: |
-| **Día 1** | Laboratorio Web Teórico (`index.html` → `respuestas_taller.json`) | 20 pts | Completado |
-| **Día 1** | `AGENTS.md` (Reglas de comportamiento y tono docente) | 10 pts | Completado |
-| **Día 1** | `MEMORY.md` (Memoria de contexto y convenciones de cátedra) | 10 pts | Completado |
-| **Día 1** | `planificacion.md` (Programa analítico de la materia) | 10 pts | Completado |
-| **Día 1** | Carpeta `/bibliografia` con al menos un archivo de referencia | 10 pts | Completado |
-| **Día 2** | `Trabajo_Practico_1/rubrica.md` (Criterios y niveles de desempeño) | **20 pts** | **Por realizar** |
-| **Día 2** | `Trabajo_Practico_1/skill_evaluador.md` (Skill de evaluación docente) | **20 pts** | **Por realizar** |
-| **Total** | **Meta del Taller de Capacitación Docente** | **100 pts** | 🏆 |
+| **Día 1** | Laboratorio Web Teórico (`index.html` → `respuestas_taller.json`) | 20 pts | ✅ Completado |
+| **Día 1** | `AGENTS.md` (Reglas de comportamiento y tono docente) | 10 pts | ✅ Completado |
+| **Día 1** | `MEMORY.md` (Memoria de contexto y convenciones de cátedra) | 10 pts | ✅ Completado |
+| **Día 1** | `planificacion.md` (Programa analítico de la materia) | 10 pts | ✅ Completado |
+| **Día 1** | Carpeta `/bibliografia` con al menos un archivo de referencia | 10 pts | ✅ Completado |
+| **Día 2** | `Trabajo_Practico_1/rubrica.md` (Rúbrica analítica y criterios) | **20 pts** | ⏳ **Objetivo 1** |
+| **Día 2** | `Trabajo_Practico_1/skill_evaluador.md` (Skill de evaluación con MCP) | **20 pts** | ⏳ **Objetivo 2** |
+| **Total** | **Meta Final del Taller de Capacitación Docente** | **100 pts** | 🏆 |
 
 ---
 
 ## 🚀 Misión: Paso a Paso
 
-### Paso 1: Creación del Evaluador (Tareas del Día 2)
-Ayer configuraste la estructura base (60 puntos). Hoy vamos a construir el evaluador asistido para sumar los **40 puntos restantes** y alcanzar el 100%.
+### Paso 1: Generación de la Rúbrica del TP1 (`Trabajo_Practico_1/rubrica.md`)
+El primer paso es definir qué y cómo se evalúa en el primer trabajo práctico de tu asignatura.
 
 1. Abre tu IDE en la raíz de tu repositorio `plantilla-taller-docente-mcp`.
-2. Puedes consultar las plantillas base en tu carpeta local `/toolkit_docente`:
-   - `toolkit_docente/03_plantilla_skill.md` (estructura básica).
-   - `toolkit_docente/plantillas_avanzadas/A_plantilla_evaluador_tecnico.md` (evaluador especializado).
-   - *(Opcional)* Revisa `/ejemplos_labs_interactivos` para inspirarte en rúbricas y ejercicios reales de otras cátedras.
-3. Ingresa el siguiente prompt en el chat de tu Agente:
-   > *"Basado en la materia que estructuramos en `planificacion.md` y las pautas de `AGENTS.md`, crea la carpeta `Trabajo_Practico_1/`. Dentro de ella, redacta una `rubrica.md` con 3 criterios analíticos claros y niveles de logro, y luego genera el archivo `skill_evaluador.md` basándote en la plantilla `toolkit_docente/plantillas_avanzadas/A_plantilla_evaluador_tecnico.md`. Muestra la propuesta y espera mi aprobación antes de guardar los archivos."*
-4. **Verificación Docente (HITL):** Revisa que los criterios sean coherentes con tu disciplina y que la skill incluya las restricciones éticas (no dar respuestas directas, tono constructivo, método socrático).
-5. **Comprobación del puntaje:**
-   - En tu terminal puedes ejecutar: `python autograder_taller.py`
-   - O realiza un `git push` a tu repositorio y verifica en la pestaña **Actions** de GitHub que alcanzaste los **100/100 pts**.
+2. Solicita a tu agente que proponga la estructura y rúbrica del TP1 en base a la planificación de tu materia:
+   > *"Actúa como mi asistente de cátedra. Tomando como base nuestra `planificacion.md` y las pautas docentes de `AGENTS.md`, crea la carpeta `Trabajo_Practico_1/`. Dentro de ella, redacta el archivo `rubrica.md` con: la consigna del TP1, 3 o 4 criterios analíticos claros y una escala de niveles de logro (Excelente, Aceptable, Requiere Ajuste). Muestra la propuesta y espera mi aprobación antes de escribir el archivo."*
+3. **Validación Docente (HITL):** Revisa que los criterios sean pertinentes, medibles y ajustados al nivel de tus estudiantes. Pide los ajustes que consideres necesarios antes de confirmar.
 
 ---
 
-### Paso 2: Ejecución del MCP (Lectura de la Entrega)
-Ahora que el agente cuenta con la Skill para evaluar, vamos a pedirle que inspeccione una entrega utilizando el protocolo MCP (FileSystem).
+### Paso 2: Creación de la Skill de Evaluación (`Trabajo_Practico_1/skill_evaluador.md`)
+Ahora encapsularemos la rúbrica y las reglas pedagógicas en una **Skill reutilizable** que gobernará al agente cuando deba auditar las entregas de los estudiantes.
 
-1. Pídele al agente que cree un caso de prueba para simular la entrega:
-   > *"Simula la entrega de 'Estudiante_Ejemplo_01' creando una carpeta `Trabajo_Practico_1/entregas/Estudiante_Ejemplo_01/` con 2 o 3 archivos representativos de código o resolución acordes a nuestra consigna. Luego, utilizando tus herramientas de lectura de archivos (MCP), lista y verifica las evidencias presentes antes de emitir cualquier dictamen."*
-2. **Observa:** El agente activará sus herramientas MCP para explorar el sistema de archivos local y listar las evidencias encontradas.
-
----
-
-### Paso 3: Supervisión y Ajuste Pedagógico (Human-in-the-Loop)
-El agente presentará un pre-diagnóstico técnico basado en la rúbrica.
-
-1. **Auditoría de Evidencia:** Elige dos observaciones del agente y corrobora que efectivamente existan en el código entregado. Si una afirmación no está respaldada o es una alucinación, ordénale corregirla.
-2. **Ajuste Pedagógico Contextual:**
-   > *"El análisis técnico de las fallas es correcto, pero el/la estudiante está en sus primeras semanas y necesita guía metodológica. Reescribe la devolución: adopta un tono empático y constructivo, comienza destacando lo que resolvió correctamente y formula dos preguntas orientadoras (socráticas) para que descubra y corrija por sí mismo/a los errores detectados."*
+1. Puedes consultar la plantilla de referencia en tu carpeta local:
+   - `toolkit_docente/plantillas_avanzadas/A_plantilla_evaluador_tecnico.md`
+   - O la estructura estándar en `toolkit_docente/03_plantilla_skill.md`
+2. Pídele al agente que genere el archivo de la skill:
+   > *"Ahora genera el archivo `Trabajo_Practico_1/skill_evaluador.md` basándote en la plantilla `toolkit_docente/plantillas_avanzadas/A_plantilla_evaluador_tecnico.md`. La skill debe: incluir el frontmatter YAML, adoptar nuestra `rubrica.md`, incorporar restricciones éticas anti-alucinación, exigir el uso del protocolo MCP FileSystem para inspeccionar evidencias en archivos locales y devolver un feedback constructivo con preguntas socráticas sin dar nunca la solución directa."*
+3. **Supervisión Docente:** Asegúrate de que la skill no sea un simple prompt genérico, sino una herramienta formal con delimitadores claros, procedimiento paso a paso y formato de salida estructurado.
 
 ---
 
-### Paso 4: Exportación Segura de la Devolución
-Para preservar la integridad de la entrega original, el feedback nunca debe sobrescribir los archivos del estudiante.
+### Paso 3: Verificación con Autograder y Publicación
+Una vez creados ambos archivos, vamos a comprobar que el sistema automatizado valide tu cátedra con puntaje perfecto.
 
-1. Pide al agente exportar la devolución en una carpeta separada de reportes:
-   > *"Guarda este feedback final aprobado en `Trabajo_Practico_1/reportes/feedback_Estudiante_Ejemplo_01.md`. No modifiques ningún archivo dentro de la carpeta de entregas."*
+1. **Prueba Local:** Abre una terminal en la raíz de tu repositorio y ejecuta:
+   ```bash
+   python autograder_taller.py
+   ```
+   Deberás ver en pantalla los checks verdes correspondientes al Día 1 y Día 2, con un resultado final de **100 / 100 pts**.
+2. **Publicación y CI en GitHub:**
+   Envía los cambios a tu repositorio remoto:
+   ```bash
+   git add .
+   git commit -m "Completar Día 2: rubrica y skill evaluador para TP1"
+   git push
+   ```
+3. **Verificación en GitHub Actions:** Entra a tu repositorio en GitHub y abre la pestaña **Actions**. Comprueba que el workflow se ejecute en verde con el reporte de aprobación total.
 
 ---
 
-## 🎉 Cierre del Taller
-¡Felicitaciones! Has completado el flujo completo de:
-1. **Configuración de Contexto Docente:** `AGENTS.md` + `MEMORY.md`.
-2. **Estructuración Asistida:** Rúbrica y Skill personalizada con el Toolkit.
-3. **Protocolo MCP:** Inspección segura de entregas en el entorno local.
-4. **Supervisión Activa (HITL):** La IA propone análisis de evidencias, pero el criterio pedagógico, el tono formativo y la decisión final son siempre del docente.
+## 🎉 Cierre y Futura Aplicación en Clases
+¡Felicitaciones! Has completado el ciclo integral del taller:
+- Has estructurado una cátedra transparente gobernada por archivos markdown (`AGENTS.md`, `MEMORY.md`, `planificacion.md`).
+- Has creado una **Skill especializada** vinculada a criterios analíticos oficiales.
+- Has comprobado cómo la evaluación continua y los pipelines de GitHub Actions automatizan el control de calidad formativo.
+
+A partir de este momento, cuando en el ciclo lectivo real tus estudiantes entreguen sus soluciones, bastará con indicarle a tu Agente:
+> *"Activa tu skill `Trabajo_Practico_1/skill_evaluador.md`, lee los archivos de entrega del alumno con MCP y prepárame un borrador de devolución basado en la rúbrica para mi revisión."*
+
+La IA se encargará del análisis de evidencias y el borrador técnico; **tú mantendrás siempre la decisión y el juicio pedagógico final.**
