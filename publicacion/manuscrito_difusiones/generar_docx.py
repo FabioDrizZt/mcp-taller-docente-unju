@@ -73,6 +73,10 @@ for line in lines:
                     p.paragraph_format.line_spacing = 1.0
                     p.paragraph_format.space_after = Pt(3)
                     p.paragraph_format.space_before = Pt(3)
+                    if c_idx > 0:
+                        p.alignment = WD_ALIGN_PARAGRAPH.RIGHT if r_idx > 0 else WD_ALIGN_PARAGRAPH.CENTER
+                    else:
+                        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     if p.runs:
                         p.runs[0].font.name = 'Times New Roman'
                         p.runs[0].font.size = Pt(10)
@@ -88,7 +92,7 @@ for line in lines:
     if not raw or raw == '---':
         continue
         
-    # Inserción de Figura 1
+    # Inserción de Figura 1 (reemplazo de marcador)
     if '[Insertar Figura 1 aquí]' in raw:
         if os.path.exists(fig_path):
             p = doc.add_paragraph()
@@ -164,4 +168,4 @@ for line in lines:
         r.font.name = 'Times New Roman'
 
 doc.save(out_docx)
-print(f"Éxito: Archivo Word generado en {out_docx}")
+print(f"Éxito: Archivo Word actualizado en {out_docx}")
