@@ -87,7 +87,7 @@ El taller se estructuró en dos jornadas consecutivas de cinco horas reloj cada 
 
 ### 2.6. Fuentes y análisis de datos
 Para responder a las preguntas de investigación se triangularon tres fuentes de datos:
-1. **Telemetría y registros de actividad en repositorios:** Seguimiento de bifurcaciones (*forks*), confirmaciones de cambios (*commits*) y registros de ejecución de integración continua en GitHub Actions generados por los participantes durante las sesiones sincrónicas.
+1. **Registros de integración continua y actividad en repositorios:** Seguimiento de ejecuciones en GitHub Actions y verificación en aula del acceso, clonación y confirmaciones de cambios (*commits*) generados durante las sesiones sincrónicas.
 2. **Notas de campo estructuradas:** Registros sistemáticos tomados por el equipo capacitador durante el desarrollo del taller, focalizados en los momentos de bloqueo procedimental, consultas reiteradas y verbalizaciones de los asistentes.
 3. **Registro de consultas e incidencias técnicas:** Documentación de dudas formuladas durante las instancias prácticas de laboratorio.
 
@@ -125,7 +125,7 @@ La Tabla 1 resume los niveles de progresión observados entre los participantes 
 | Envío exitoso de cambios a GitHub (*push*) | 6 | 8,6 % |
 | Culminación integral autónoma del flujo CI/CD (100 pts) | 1 | 1,4 % |
 
-*Nota.* Las categorías no representan etapas mutuamente excluyentes ni necesariamente acumulativas. El cuestionario web interactivo también estuvo disponible mediante acceso directo desde el navegador (sin requerir clonación previa del repositorio). Los datos de acceso al repositorio y ejecuciones de integración continua se obtuvieron de la telemetría de GitHub Actions, mientras que las acciones locales (ejecución de scripts y confirmación de cambios) fueron registradas mediante observación directa y asistencia técnica en el aula. Se consideró culminación autónoma la obtención de 100 puntos en GitHub Actions durante el horario sincrónico del taller, sin intervención directa del equipo capacitador sobre el equipo, los archivos o los comandos ejecutados por el participante.
+*Nota.* Las categorías no representan etapas mutuamente excluyentes ni necesariamente acumulativas. El cuestionario web interactivo también estuvo disponible mediante acceso directo desde el navegador (sin requerir clonación previa del repositorio). Los datos de ejecuciones de integración continua se obtuvieron de los registros de GitHub Actions. El acceso al repositorio, la clonación, la ejecución local de scripts y la realización de confirmaciones de cambios fueron registrados mediante observación directa y asistencia técnica en el aula. Se consideró culminación autónoma la obtención de 100 puntos en GitHub Actions durante el horario sincrónico del taller, sin intervención directa del equipo capacitador sobre el equipo, los archivos o los comandos ejecutados por el participante.
 
 Como se observa en la Tabla 1, mientras que el 74,3 % de los asistentes resolvió con éxito las actividades conceptuales provistas mediante la interfaz web desacoplada (`index.html`), únicamente 6 personas (8,6 %) lograron sincronizar cambios remotos hacia GitHub, y **un único participante (1,4 %) completó de manera plenamente autónoma la totalidad de los requisitos verificados por GitHub Actions (100 puntos)** durante el horario del taller.
 
@@ -143,7 +143,7 @@ El análisis temático de las notas de campo y las consultas de los participante
 ### 4.1. La brecha de instrumentación (*Tooling Gap*) como factor crítico
 El marcado contraste entre la elevada asistencia e interés manifestado por la cohorte (87,5 %) y la baja culminación sincrónica del pipeline automatizado en GitHub Actions (1,4 %) constituye el hallazgo empírico más relevante de la experiencia.
 
-En el campo de la educación en informática, investigaciones previas han señalado que la incorporación de herramientas profesionales de integración continua en entornos formativos iniciales suele introducir una sobrecarga cognitiva secundaria que compite con los objetivos pedagógicos centrales (Buffardi et al., 2020). Los resultados de este estudio sugieren que dicho fenómeno se reproduce de manera acentuada en la formación docente: cuando se intenta capacitar en el diseño de agentes de IA y se exige simultáneamente el dominio de flujos completos de Git y terminal, la fricción instrumental inhibe la apropiación pedagógica.
+Los resultados de este estudio sugieren que la incorporación simultánea de herramientas profesionales de integración continua y control de versiones puede introducir una carga instrumental secundaria que compite con los objetivos pedagógicos centrales del taller. Cuando se intenta capacitar en el diseño de agentes de IA y se exige simultáneamente el dominio de flujos completos de Git y terminal, la fricción instrumental puede dificultar la apropiación pedagógica.
 
 Este hallazgo fundamenta la necesidad de repensar los canales de entrega. Para que arquitecturas basadas en MCP puedan ser adoptadas de forma amplia por docentes universitarios de diversas disciplinas, es imprescindible encapsular la complejidad de la consola de comandos mediante editores con interfaces gráficas amigables, extensiones integradas o plataformas de aprendizaje nativas que no requieran manipulación directa de flujos Git de bajo nivel.
 
@@ -212,8 +212,6 @@ Anthropic. (2024). *Model Context Protocol: An open standard for connecting AI m
 Becker, B. A., Denny, P., Finnie-Ansley, J., Luxton-Reilly, A., Prather, J., & Santos, E. A. (2023). Programming is hard—or at least it used to be: Educational opportunities and challenges of AI code generation. En *Proceedings of the 54th ACM Technical Symposium on Computer Science Education V. 1* (SIGCSE 2023) (pp. 500-506). Association for Computing Machinery. https://doi.org/10.1145/3545945.3569759
 
 Black, P., & Wiliam, D. (1998). Assessment and classroom learning. *Assessment in Education: Principles, Policy & Practice, 5*(1), 7-74. https://doi.org/10.1080/0969595980050102
-
-Buffardi, K., Valdivia, P., & Rogers, D. (2020). Guerrilla testing: Effective software testing in CS1. En *Proceedings of the 51st ACM Technical Symposium on Computer Science Education* (SIGCSE '20) (pp. 377-383). Association for Computing Machinery. https://doi.org/10.1145/3328778.3366867
 
 Denny, P., Prather, J., Becker, B. A., Finnie-Ansley, J., Blum, A., Luxton-Reilly, A., MacNeil, S., Petersen, A., Reeves, M., & Santos, E. A. (2024). Computing education in the era of generative AI. *Communications of the ACM, 67*(2), 56-67. https://doi.org/10.1145/3624720
 

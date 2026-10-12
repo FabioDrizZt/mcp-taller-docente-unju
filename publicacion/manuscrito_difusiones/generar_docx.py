@@ -8,6 +8,12 @@ import os
 
 doc = docx.Document()
 
+# Anonimización estricta de metadatos del documento Word (evaluación a doble ciego):
+doc.core_properties.author = ""
+doc.core_properties.last_modified_by = ""
+doc.core_properties.comments = ""
+doc.core_properties.title = "Artículo Original - DIFUSIONES"
+
 # Configuración de página A4 y márgenes requeridos por DIFUSIONES:
 # Superior e inferior 2.5 cm; derecho e izquierdo 3.0 cm
 section = doc.sections[0]
