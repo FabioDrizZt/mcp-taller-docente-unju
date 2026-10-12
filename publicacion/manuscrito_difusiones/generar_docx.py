@@ -47,6 +47,27 @@ def set_cell_borders(cell, top=None, bottom=None):
     )
     tcPr.append(tcBorders)
 
+def add_formatted_runs(paragraph, text, base_font_size=12):
+    parts = re.split(r'(\*\*.*?\*\*|\*.*?\*|`.*?`)', text)
+    for part in parts:
+        if not part:
+            continue
+        if part.startswith('**') and part.endswith('**'):
+            r = paragraph.add_run(part[2:-2])
+            r.bold = True
+        elif part.startswith('*') and part.endswith('*'):
+            r = paragraph.add_run(part[1:-1])
+            r.italic = True
+        elif part.startswith('`') and part.endswith('`'):
+            r = paragraph.add_run(part[1:-1])
+            r.font.name = 'Consolas'
+            r.font.size = Pt(base_font_size - 1.5)
+            continue
+        else:
+            r = paragraph.add_run(part)
+        r.font.name = 'Times New Roman'
+        r.font.size = Pt(base_font_size)
+
 in_table = False
 table_lines = []
 
@@ -68,8 +89,8 @@ for line in lines:
             for r_idx, row in enumerate(rows_data):
                 for c_idx, val in enumerate(row):
                     cell = t.cell(r_idx, c_idx)
-                    cell.text = val.strip()
                     p = cell.paragraphs[0]
+                    p.text = ''
                     p.paragraph_format.line_spacing = 1.0
                     p.paragraph_format.space_after = Pt(3)
                     p.paragraph_format.space_before = Pt(3)
@@ -77,17 +98,16 @@ for line in lines:
                         p.alignment = WD_ALIGN_PARAGRAPH.RIGHT if r_idx > 0 else WD_ALIGN_PARAGRAPH.CENTER
                     else:
                         p.alignment = WD_ALIGN_PARAGRAPH.LEFT
-                    if p.runs:
-                        p.runs[0].font.name = 'Times New Roman'
-                        p.runs[0].font.size = Pt(10)
-                        if r_idx == 0:
-                            p.runs[0].font.bold = True
-                            set_cell_borders(cell, top='single', bottom='single')
-                        elif r_idx == len(rows_data) - 1:
-                            set_cell_borders(cell, bottom='single')
-                        else:
-                            set_cell_borders(cell)
-            doc.add_paragraph()
+                    add_formatted_runs(p, val.strip(), base_font_size=10)
+                    if r_idx == 0:
+                        for run in p.runs:
+                            run.bold = True
+                        set_cell_borders(cell, top='single', bottom='single')
+                    elif r_idx == len(rows_data) - 1:
+                        set_cell_borders(cell, bottom='single')
+                    else:
+                        set_cell_borders(cell)
+            # No se agrega doc.add_paragraph() vacío para que la nota APA quede pegada inmediatamente debajo de la tabla
 
     if not raw or raw == '---':
         continue
@@ -116,7 +136,7 @@ for line in lines:
         run.font.name = 'Times New Roman'
         continue
 
-    # Encabezados principales H2 (Mayúsculas, Negrita, Centrados según directrices)
+    # Encabezados principales H2 (Mayúsculas, Negrita, Centrados según directrices DIFUSIONES)
     if raw.startswith('## '):
         t_text = raw[3:].strip()
         p = doc.add_paragraph()
@@ -129,7 +149,7 @@ for line in lines:
         run.font.name = 'Times New Roman'
         continue
 
-    # Subtítulos H3 (Minúsculas, Negrita, Izquierda según directrices)
+    # Subtítulos H3 (Minúsculas, Negrita, Izquierda según directrices DIFUSIONES)
     if raw.startswith('### '):
         t_text = raw[4:].strip()
         p = doc.add_paragraph()
@@ -142,30 +162,46 @@ for line in lines:
         run.font.name = 'Times New Roman'
         continue
 
-    # Párrafo normal
+    # Formato especial APA 7 para número de Figura y Tabla
+    if raw in ('**Figura 1**', '**Tabla 1**'):
+        p = doc.add_paragraph()
+        p.paragraph_format.line_spacing = 1.0
+        p.paragraph_format.space_before = Pt(12)
+        p.paragraph_format.space_after = Pt(2)
+        run = p.add_run(raw[2:-2])
+        run.bold = True
+        run.font.name = 'Times New Roman'
+        run.font.size = Pt(12)
+        continue
+
+    # Formato especial APA 7 para títulos de figuras y tablas (en cursiva justo después del número)
+    if raw.startswith('*Arquitectura sociotécnica') or raw.startswith('*Progresión de los participantes'):
+        p = doc.add_paragraph()
+        p.paragraph_format.line_spacing = 1.0
+        p.paragraph_format.space_before = Pt(0)
+        p.paragraph_format.space_after = Pt(6)
+        run = p.add_run(raw.strip('*'))
+        run.italic = True
+        run.font.name = 'Times New Roman'
+        run.font.size = Pt(12)
+        continue
+
+    # Formato especial APA 7 para notas de figuras y tablas (*Nota.* ...)
+    if raw.startswith('*Nota.*'):
+        p = doc.add_paragraph()
+        p.paragraph_format.line_spacing = 1.0
+        p.paragraph_format.space_before = Pt(3)
+        p.paragraph_format.space_after = Pt(12)
+        # 10 pt para notas según norma APA 7
+        add_formatted_runs(p, raw, base_font_size=10)
+        continue
+
+    # Párrafo normal de texto
     p = doc.add_paragraph()
     p.paragraph_format.line_spacing = 1.0
     p.paragraph_format.space_after = Pt(6)
     p.paragraph_format.space_before = Pt(0)
-    
-    # Formateo de texto en línea
-    parts = re.split(r'(\*\*.*?\*\*|\*.*?\*|`.*?`)', raw)
-    for part in parts:
-        if not part:
-            continue
-        if part.startswith('**') and part.endswith('**'):
-            r = p.add_run(part[2:-2])
-            r.bold = True
-        elif part.startswith('*') and part.endswith('*'):
-            r = p.add_run(part[1:-1])
-            r.italic = True
-        elif part.startswith('`') and part.endswith('`'):
-            r = p.add_run(part[1:-1])
-            r.font.name = 'Consolas'
-            r.font.size = Pt(10.5)
-        else:
-            r = p.add_run(part)
-        r.font.name = 'Times New Roman'
+    add_formatted_runs(p, raw, base_font_size=12)
 
 doc.save(out_docx)
-print(f"Éxito: Archivo Word actualizado en {out_docx}")
+print(f"Éxito: Archivo Word generado y actualizado en {out_docx}")
