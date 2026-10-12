@@ -141,7 +141,7 @@ El análisis temático de las notas de campo y las consultas de los participante
 ## 4. DISCUSIÓN
 
 ### 4.1. La brecha de instrumentación (*Tooling Gap*) como factor crítico
-El marcado contraste entre la elevada asistencia e interés manifestado por la cohorte (87,5 %) y la baja culminación sincrónica del pipeline automatizado en GitHub Actions (1,4 %) constituye el hallazgo empírico más relevante de la experiencia.
+El marcado contraste entre la elevada tasa de asistencia de la cohorte (87,5 %) y la baja culminación sincrónica del flujo automatizado en GitHub Actions (1,4 %) constituye el hallazgo empírico más relevante de la experiencia.
 
 Los resultados de este estudio sugieren que la incorporación simultánea de herramientas profesionales de integración continua y control de versiones puede introducir una carga instrumental secundaria que compite con los objetivos pedagógicos centrales del taller. Cuando se intenta capacitar en el diseño de agentes de IA y se exige simultáneamente el dominio de flujos completos de Git y terminal, la fricción instrumental puede dificultar la apropiación pedagógica.
 
@@ -178,7 +178,7 @@ El presente artículo expuso el diseño, implementación y estudio de transferen
 Las principales conclusiones son:
 1. **Viabilidad técnica y pedagógica:** La articulación entre MCP y especificaciones estructuradas permite inspeccionar entornos locales de código de manera auditable y reducir el acoplamiento con integraciones propietarias específicas, siempre que el servidor opere con rutas restringidas, privilegios mínimos y mecanismos adecuados de protección de credenciales.
 2. **Relevancia del prediagnóstico asistido:** La subordinación del agente a un rol de asistente pericial supervisado preserva la autoridad pedagógica docente, favoreciendo una retroalimentación formativa contextualizada y sometida a revisión ética y pedagógica humana.
-3. **Identificación de la brecha instrumental:** El estudio identificó la fricción asociada con Git y la consola como el principal cuello de botella observado durante el taller, validando la conveniencia de desarrollar interfaces visuales y recursos desacoplados que faciliten una apropiación pedagógica gradual.
+3. **Identificación de la brecha instrumental:** El estudio identificó la fricción asociada con Git y la consola como el principal cuello de botella observado durante el taller, respaldando la conveniencia de desarrollar interfaces visuales y recursos desacoplados que faciliten una apropiación pedagógica gradual.
 
 Como líneas de trabajo futuro se plantean:
 - El desarrollo de estudios cuasiexperimentales con seguimiento temporal y grupos de control para medir el impacto de la retroalimentación asistida sobre el rendimiento académico final de los estudiantes.
