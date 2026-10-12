@@ -48,6 +48,6 @@
 ## 4. Próximos Pasos Inmediatos (Roadmap 2do Semestre 2026)
 
 - [x] **Hito 1 (Agosto – Septiembre 2026):** Expansión del pilotaje a *Algoritmos y Programación* e *Informática* (Robótica).
-- [ ] **Hito 2 (02 y 03 de Octubre 2026 - EN CURSO):** Dictado del Taller de Capacitación Docente Interno sobre Agentes de IA y Protocolo MCP (10 hs).
+- [x] **Hito 2 (02 y 03 de Octubre 2026 - COMPLETADO):** Dictado del Taller de Capacitación Docente sobre Agentes de IA y Protocolo MCP (10 hs reloj, 80 inscriptos, 70 asistentes de UCSE y UNJu PUInf/LIE).
 - [ ] **Hito 3 (Octubre - Noviembre 2026):** Consolidación estadística inferencial de los Puntos de Ritmo vs. calificaciones finales.
-- [ ] **Hito 4 (Diciembre 2026):** Redacción del Informe Final y preparación del artículo científico para congreso (WICC/CACIC).
+- [ ] **Hito 4 (Octubre - Diciembre 2026 - EN CURSO):** Redacción del Artículo Original para la revista *DIFUSIONES* (UCSE) y preparación del artículo para congreso (WICC/CACIC). Redactado primer borrador completo IMRyD y paquete de metadatos OJS.
