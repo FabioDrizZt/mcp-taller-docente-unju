@@ -83,8 +83,9 @@ def add_formatted_runs(paragraph, text, base_font_size=12):
             r.italic = True
         elif part.startswith('`') and part.endswith('`'):
             r = paragraph.add_run(part[1:-1])
-            r.font.name = 'Consolas'
-            r.font.size = Pt(base_font_size - 1.5)
+            r.font.name = 'Times New Roman'
+            r.font.size = Pt(base_font_size)
+            r.italic = True
             continue
         else:
             r = paragraph.add_run(part)
