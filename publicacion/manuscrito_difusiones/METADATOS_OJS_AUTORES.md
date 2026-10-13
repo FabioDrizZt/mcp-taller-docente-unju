@@ -128,7 +128,7 @@ Agradecemos su atención y quedamos a su entera disposición.
 ### LISTA DE CONTROL PREVIA AL ENVÍO EN OJS (CHECKLIST)
 
 - [x] **Sección en OJS:** Artículos Técnicos (cumple con la pauta de 10 a 15 páginas).
-- [x] **Archivo principal (.docx):** Anonimizado 100 %, propiedades internas con título `Artículo Técnico - DIFUSIONES`, autor/comentarios vacíos, títulos y subtítulos en 12 pt Times New Roman.
+- [x] **Archivo principal (.docx):** Anonimizado mediante eliminación de nombres, afiliaciones y metadatos identificatorios directos; propiedades internas con título `Artículo Técnico - DIFUSIONES`, autor/comentarios vacíos, títulos y subtítulos en 12 pt Times New Roman.
 - [x] **Resumen y Abstract:** Cumplen estrictamente con el rango reglamentario de 250 a 300 palabras (Resumen: 290 palabras; Abstract: 253 palabras).
 - [x] **Tablas:** Formato nativo de Word según APA 7ª (sin líneas verticales, notas a 10 pt indicando elaboración propia y fuente).
 - [x] **Figura 1 (.png):** 300 DPI reales (1800 × 1260 px, 15.24 cm de ancho) adjunta como archivo complementario independiente.

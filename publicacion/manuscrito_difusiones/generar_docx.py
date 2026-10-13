@@ -33,6 +33,21 @@ style.paragraph_format.line_spacing = 1.0
 style.paragraph_format.space_after = Pt(6)
 style.paragraph_format.space_before = Pt(0)
 
+# Configuración de estilos de encabezado nativos para esquema, accesibilidad y navegación:
+h1_style = doc.styles['Heading 1']
+h1_style.font.name = 'Times New Roman'
+h1_style.font.size = Pt(12)
+h1_style.font.bold = True
+h1_style.font.color.rgb = RGBColor(0, 0, 0)
+h1_style.paragraph_format.line_spacing = 1.0
+
+h2_style = doc.styles['Heading 2']
+h2_style.font.name = 'Times New Roman'
+h2_style.font.size = Pt(12)
+h2_style.font.bold = True
+h2_style.font.color.rgb = RGBColor(0, 0, 0)
+h2_style.paragraph_format.line_spacing = 1.0
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 md_path = os.path.join(script_dir, 'articulo_original.md')
 fig_path = os.path.join(script_dir, 'Figura_1_Arquitectura_MCP_HITL.png')
@@ -145,7 +160,7 @@ for line in lines:
     # Encabezados principales H2 (Mayúsculas, Negrita, Centrados según directrices DIFUSIONES)
     if raw.startswith('## '):
         t_text = raw[3:].strip()
-        p = doc.add_paragraph()
+        p = doc.add_paragraph(style='Heading 1')
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.space_before = Pt(14)
         p.paragraph_format.space_after = Pt(6)
@@ -158,7 +173,7 @@ for line in lines:
     # Subtítulos H3 (Minúsculas, Negrita, Izquierda según directrices DIFUSIONES)
     if raw.startswith('### '):
         t_text = raw[4:].strip()
-        p = doc.add_paragraph()
+        p = doc.add_paragraph(style='Heading 2')
         p.alignment = WD_ALIGN_PARAGRAPH.LEFT
         p.paragraph_format.space_before = Pt(10)
         p.paragraph_format.space_after = Pt(4)
