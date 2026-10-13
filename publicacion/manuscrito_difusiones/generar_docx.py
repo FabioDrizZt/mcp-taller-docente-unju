@@ -148,10 +148,11 @@ for line in lines:
         if os.path.exists(fig_path):
             p = doc.add_paragraph()
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            p.paragraph_format.space_before = Pt(6)
-            p.paragraph_format.space_after = Pt(6)
+            p.paragraph_format.space_before = Pt(4)
+            p.paragraph_format.space_after = Pt(4)
+            p.paragraph_format.keep_with_next = True
             run = p.add_run()
-            picture = run.add_picture(fig_path, width=Cm(15.2))
+            picture = run.add_picture(fig_path, width=Cm(14.0))
             # Texto alternativo y título en propiedades internas del objeto (Alt Text para lectores de pantalla)
             docPr = picture._inline.docPr
             docPr.attrib['title'] = "Figura 1. Arquitectura sociotécnica MCP y supervisión docente activa"
@@ -178,6 +179,7 @@ for line in lines:
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.space_before = Pt(14)
         p.paragraph_format.space_after = Pt(6)
+        p.paragraph_format.keep_with_next = True
         run = p.add_run(t_text)
         run.bold = True
         run.font.size = Pt(12)
@@ -191,6 +193,7 @@ for line in lines:
         p.alignment = WD_ALIGN_PARAGRAPH.LEFT
         p.paragraph_format.space_before = Pt(10)
         p.paragraph_format.space_after = Pt(4)
+        p.paragraph_format.keep_with_next = True
         run = p.add_run(t_text)
         run.bold = True
         run.font.size = Pt(12)
@@ -203,6 +206,10 @@ for line in lines:
         p.paragraph_format.line_spacing = 1.0
         p.paragraph_format.space_before = Pt(12)
         p.paragraph_format.space_after = Pt(2)
+        p.paragraph_format.keep_with_next = True
+        if raw == '**Figura 1**':
+            # Evitar separación de Figura 1 y título huérfano: inicia bloque completo en página siguiente
+            p.paragraph_format.page_break_before = True
         run = p.add_run(raw[2:-2])
         run.bold = True
         run.font.name = 'Times New Roman'
@@ -215,6 +222,7 @@ for line in lines:
         p.paragraph_format.line_spacing = 1.0
         p.paragraph_format.space_before = Pt(0)
         p.paragraph_format.space_after = Pt(6)
+        p.paragraph_format.keep_with_next = True
         run = p.add_run(raw.strip('*'))
         run.italic = True
         run.font.name = 'Times New Roman'
