@@ -33,8 +33,8 @@
 > Antes de confirmar la carga en OJS, completar los correos electrónicos institucionales (@ucse.edu.ar o institucionales correspondientes) y los identificadores ORCID de los autores.
 
 #### 1. Autor Principal y de Correspondencia
-- **Nombre y Apellido:** Fabio Argañaraz
-- **Correo Institucional:** *(Completar con correo institucional @ucse.edu.ar)*
+- **Nombre y Apellido:** Fabio Damián Argañaraz Azua
+- **Correo Institucional:** fabiodamian.arganarazazua@ucse.edu.ar
 - **País:** Argentina
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 - **ORCID:** *(Completar con ORCID obligatorio, ej: https://orcid.org/0000-000X-XXXX-XXXX)*
