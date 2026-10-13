@@ -39,7 +39,7 @@
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 - **ORCID:** https://orcid.org/0009-0004-7725-0152
 - **Biografía Académica (máx. 150 palabras):**
-  Ingeniero en Informática y docente universitario en la Universidad Católica de Santiago del Estero (UCSE - DASS), desempeñándose como profesor en asignaturas de programación y desarrollo de software. Es Director del proyecto de investigación "Agentes de IA y Protocolo MCP para evaluación continua y autoevaluación en materias de Ingeniería en Informática" (Convocatoria DASS UCSE 2025). Sus líneas de interés incluyen la inteligencia artificial aplicada a la educación, la arquitectura de software y la integración continua en entornos formativos.
+  Ingeniero en Informática graduado con Medalla al Mejor Promedio por la Universidad Nacional de Jujuy (UNJu). Cuenta con más de ocho años de trayectoria en docencia universitaria de grado en ciencias de la computación, desempeñándose actualmente como profesor en asignaturas de programación y desarrollo de software en la Universidad Católica de Santiago del Estero (UCSE - DASS). Es Director del proyecto de investigación "Agentes de IA y Protocolo MCP para evaluación continua y autoevaluación en materias de Ingeniería en Informática" (Convocatoria DASS-UCSE 2025). Se especializa en tecnología educativa (EdTech), diseño de arquitecturas sociotécnicas, integración de agentes de inteligencia artificial en la didáctica de la programación y automatización de la evaluación continua.
 
 #### 2. Coautora
 - **Nombre y Apellido:** Gabriela Bejarano
@@ -48,7 +48,7 @@
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 - **ORCID:** *(Completar con ORCID recomendado)*
 - **Biografía Académica (máx. 150 palabras):**
-  Ingeniera y docente investigadora universitaria en el Departamento Académico San Salvador de la Universidad Católica de Santiago del Estero (UCSE). Se desempeña como Asesora Metodológica en proyectos de investigación científica y tecnológica orientados a la innovación pedagógica en ingeniería y ciencias de la computación.
+  Especialista en gestión de proyectos ágiles, ingeniería de software y ciencia de datos. Cuenta con la prestigiosa acreditación de Educadora Internacional de Ingeniería (ING.PAED.IGIP) otorgada por la IGIP, y la certificación "Scrum Master Professional Certificate" (CertiProf), respaldando su amplia experiencia en la facilitación de equipos de desarrollo. Actualmente cursa la Maestría en Ciencia de Datos en la UCASAL. Combina su práctica profesional en la gestión pública con un fuerte perfil académico, siendo miembro activo del Gabinete de Investigación en Informática y Tecnología de la UCSE-DASS. Su enfoque garantiza la calidad metodológica, el rigor analítico y la correcta implementación de procesos en el desarrollo de software.
 
 #### 3. Coautora (Estudiante Investigadora)
 - **Nombre y Apellido:** Samara Zamar
