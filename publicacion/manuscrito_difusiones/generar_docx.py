@@ -12,7 +12,7 @@ doc = docx.Document()
 doc.core_properties.author = ""
 doc.core_properties.last_modified_by = ""
 doc.core_properties.comments = ""
-doc.core_properties.title = "Artículo Original - DIFUSIONES"
+doc.core_properties.title = "Artículo Técnico - DIFUSIONES"
 
 # Configuración de página A4 y márgenes requeridos por DIFUSIONES:
 # Superior e inferior 2.5 cm; derecho e izquierdo 3.0 cm
@@ -210,4 +210,6 @@ for line in lines:
     add_formatted_runs(p, raw, base_font_size=12)
 
 doc.save(out_docx)
-print(f"Éxito: Archivo Word generado y actualizado en {out_docx}")
+tecnico_docx = os.path.join(script_dir, 'articulo_tecnico.docx')
+doc.save(tecnico_docx)
+print(f"Éxito: Archivos Word generados y actualizados en {out_docx} y {tecnico_docx}")
