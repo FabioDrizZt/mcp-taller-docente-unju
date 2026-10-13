@@ -116,7 +116,7 @@ Declaramos formalmente que:
 
 4. La fuente de financiamiento y apoyo institucional corresponde al proyecto acreditado en la Convocatoria DASS UCSE 2025, cuyos datos identificatorios han sido omitidos del manuscrito principal y registrados en esta plataforma para ser incorporados tras la aceptación.
 
-5. La sección de evaluación empírica corresponde a una validación técnica y de observabilidad de la arquitectura en un taller formativo de prueba con usuarios; los registros analizados proceden de telemetría de repositorios y notas de incidencias instrumentales de software, resguardando la anonimización integral de los participantes sin involucrar datos personales sensibles ni experimentos clínicos.
+5. En relación con las consideraciones éticas, la sección de evaluación empírica corresponde a una validación técnica y de observabilidad de la arquitectura en un taller formativo voluntario; los registros analizados proceden de telemetría de repositorios y notas cualitativas de incidencias instrumentales de software, resguardando la anonimización integral sin datos personales sensibles ni experimentación clínica. Se declara abiertamente que la actividad no contó con evaluación previa ni con certificación formal de exención por un comité de ética institucional, circunstancia asumida como una limitación procedimental del diseño para la cual se encuentra en gestión un dictamen de encuadre institucional ante la autoridad académica competente.
 
 6. Se adjunta de forma separada la Figura 1 en formato PNG de alta resolución (300 DPI reales, ancho 15.24 cm).
 
