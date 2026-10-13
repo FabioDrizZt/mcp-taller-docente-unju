@@ -30,20 +30,20 @@
 ### DATOS DE LOS AUTORES (Orden Oficial - Máximo 5 Autores)
 
 > [!IMPORTANT]
-> Antes de confirmar la carga en OJS, completar los correos electrónicos institucionales (@ucse.edu.ar o institucionales correspondientes) y los identificadores ORCID de los autores.
+> Correos institucionales y ORCID del autor de correspondencia ya cargados. Pendiente: ORCID de los cuatro coautores (recomendado por la revista, no obligatorio). Verificar que la forma del nombre coincida con la registrada en ORCID.
 
 #### 1. Autor Principal y de Correspondencia
 - **Nombre y Apellido:** Fabio Damián Argañaraz Azua
 - **Correo Institucional:** fabiodamian.arganarazazua@ucse.edu.ar
 - **País:** Argentina
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
-- **ORCID:** *(Completar con ORCID obligatorio, ej: https://orcid.org/0000-000X-XXXX-XXXX)*
+- **ORCID:** https://orcid.org/0009-0004-7725-0152
 - **Biografía Académica (máx. 150 palabras):**
   Ingeniero en Informática y docente universitario en la Universidad Católica de Santiago del Estero (UCSE - DASS), desempeñándose como profesor en asignaturas de programación y desarrollo de software. Es Director del proyecto de investigación "Agentes de IA y Protocolo MCP para evaluación continua y autoevaluación en materias de Ingeniería en Informática" (Convocatoria DASS UCSE 2025). Sus líneas de interés incluyen la inteligencia artificial aplicada a la educación, la arquitectura de software y la integración continua en entornos formativos.
 
 #### 2. Coautora
 - **Nombre y Apellido:** Gabriela Bejarano
-- **Correo Institucional:** *(Completar con correo institucional @ucse.edu.ar)*
+- **Correo Institucional:** gabriela.bejarano@ucse.edu.ar
 - **País:** Argentina
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 - **ORCID:** *(Completar con ORCID recomendado)*
@@ -52,7 +52,7 @@
 
 #### 3. Coautora (Estudiante Investigadora)
 - **Nombre y Apellido:** Samara Zamar
-- **Correo Institucional:** *(Completar con correo institucional)*
+- **Correo Institucional:** samarazamar@alumnos.ucse.edu.ar
 - **País:** Argentina
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 - **ORCID:** *(Completar con ORCID)*
@@ -61,7 +61,7 @@
 
 #### 4. Coautor (Estudiante Investigador)
 - **Nombre y Apellido:** Mariano Sumbaino
-- **Correo Institucional:** *(Completar con correo institucional)*
+- **Correo Institucional:** marianoalfredo.sumbaino@alumnos.ucse.edu.ar
 - **País:** Argentina
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 - **ORCID:** *(Completar con ORCID)*
@@ -70,7 +70,7 @@
 
 #### 5. Coautor (Estudiante Investigador)
 - **Nombre y Apellido:** Gino Grosso
-- **Correo Institucional:** *(Completar con correo institucional)*
+- **Correo Institucional:** ginoangelogrosso@alumnos.ucse.edu.ar
 - **País:** Argentina
 - **Institución de Afiliación:** Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 - **ORCID:** *(Completar con ORCID)*
@@ -92,7 +92,13 @@ Los autores declaran no tener conflictos de interés institucionales, profesiona
 ```text
 Entidad Financiadora: Universidad Católica de Santiago del Estero (UCSE) – Departamento Académico San Salvador (DASS)
 
-Convocatoria / Programa: Convocatoria de Proyectos de Iniciación a la Investigación 2025 (Resolución DASS)
+Convocatoria / Programa: Convocatoria DASS-UCSE 2025 – Concurso de Proyectos de Iniciación a la Investigación (Disposición del Consejo del DASS N.º 441-2025)
+
+Resolución de adjudicación: Disposición N.º 691-2025 del Consejo del Departamento Académico San Salvador (22 de diciembre de 2025), Anexo 1, orden de mérito N.º 08
+
+Período de ejecución: 22 de diciembre de 2025 al 22 de diciembre de 2026
+
+Director del proyecto: Ing. Fabio Argañaraz Azua
 
 Proyecto: Agentes de IA y Protocolo MCP para evaluación continua y autoevaluación en materias de Ingeniería en Informática
 ```
@@ -114,7 +120,7 @@ Declaramos formalmente que:
 
 3. El manuscrito remitido ha sido anonimizado exhaustivamente (tanto en su cuerpo de texto como en las propiedades del archivo Word) para dar estricto cumplimiento a la evaluación a doble ciego.
 
-4. La fuente de financiamiento y apoyo institucional corresponde al proyecto acreditado en la Convocatoria DASS UCSE 2025, cuyos datos identificatorios han sido omitidos del manuscrito principal y registrados en esta plataforma para ser incorporados tras la aceptación.
+4. La fuente de financiamiento y apoyo institucional corresponde al proyecto acreditado en la Convocatoria DASS-UCSE 2025 adjudicado mediante Disposición N.º 691-2025 del Consejo del DASS, cuyos datos identificatorios han sido omitidos del manuscrito principal y registrados en los campos de metadatos de esta plataforma para ser incorporados tras la aceptación.
 
 5. En relación con las consideraciones éticas, el estudio involucró participantes humanos (n = 70) en un taller formativo voluntario; los registros analizados proceden de telemetría de repositorios, códigos alfanuméricos temporales y notas cualitativas de incidencias, tratados de forma agregada y sin datos personales sensibles. Se informó oralmente a los asistentes sobre el propósito de la actividad y su carácter voluntario, sin formularios individuales de consentimiento. Se declara abiertamente que la actividad no contó con evaluación previa ni con certificación formal de exención por un comité de ética institucional, circunstancia asumida como limitación ética y procedimental del diseño. [COMPLETAR ANTES DEL ENVÍO con la determinación escrita de la autoridad institucional, si ya fue emitida (ver bloque condicional más abajo).]
 
