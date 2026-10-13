@@ -1,6 +1,6 @@
 # INTEGRACIÓN DE AGENTES DE INTELIGENCIA ARTIFICIAL Y PROTOCOLO MCP EN LA EVALUACIÓN CONTINUA UNIVERSITARIA: ARQUITECTURA TÉCNICA Y EXPERIENCIA DE TRANSFERENCIA DOCENTE
 
-# *INTEGRATION OF ARTIFICIAL INTELLIGENCE AGENTS AND MCP PROTOCOL IN UNIVERSITY CONTINUOUS ASSESSMENT: TECHNICAL ARCHITECTURE AND TEACHER TRANSFER EXPERIENCE*
+# *INTEGRATION OF ARTIFICIAL INTELLIGENCE AGENTS AND THE MODEL CONTEXT PROTOCOL IN CONTINUOUS UNIVERSITY ASSESSMENT: TECHNICAL ARCHITECTURE AND A FACULTY PROFESSIONAL DEVELOPMENT EXPERIENCE*
 
 ---
 
@@ -52,7 +52,7 @@ La investigación se desarrolló durante el ciclo lectivo 2026 en el marco de un
 3. **Fase 3: Transferencia formativa y estudio de adopción (octubre de 2026):** Diseño y dictado de un taller intensivo de capacitación docente de diez horas reloj presenciales/sincrónicas orientado a profesores universitarios y estudiantes avanzados en formación docente.
 
 ### 2.3. Participantes
-La convocatoria al taller de capacitación fue abierta, institucional y de carácter voluntario. Se registraron 80 personas inscriptas, de las cuales 70 asistieron activamente a las sesiones de trabajo, lo que representó una tasa de asistencia del 87,5 %. 
+La convocatoria al taller de capacitación fue abierta, institucional y de carácter voluntario. Se configuró una muestra no probabilística y autoseleccionada de participantes voluntarios a partir de 80 personas inscriptas, de las cuales 70 asistieron activamente a las sesiones de trabajo presenciales/sincrónicas (tasa de asistencia del 87,5 %). 
 
 La muestra estuvo integrada por dos grupos diferenciados:
 - **Grupo 1 (Docentes universitarios en ejercicio):** Profesores y auxiliares de cátedras del área de informática y computación pertenecientes a una universidad de gestión privada de la región (n = 28; 40,0 % de los asistentes).
@@ -93,14 +93,14 @@ Para responder a las preguntas de investigación se triangularon tres fuentes de
 2. **Notas de campo estructuradas:** Registros sistemáticos tomados por el equipo capacitador durante el desarrollo del taller, focalizados en los momentos de bloqueo procedimental, consultas reiteradas y verbalizaciones de los asistentes.
 3. **Registro de consultas e incidencias técnicas:** Documentación de dudas formuladas durante las instancias prácticas de laboratorio.
 
-Para el análisis cuantitativo, la unidad de análisis fue cada participante asistente al taller. Para el análisis cualitativo, la unidad de registro estuvo constituida por cada incidencia, consulta o episodio de bloqueo consignado en las notas de campo.
+Para el análisis cuantitativo, la unidad de análisis fue cada participante asistente al taller. Para el análisis cualitativo, la unidad de registro estuvo constituida por cada incidencia, consulta o episodio de bloqueo consignado en las notas de campo. Estas frecuencias corresponden a unidades de registro cualitativo y no a participantes únicos, por lo que una misma persona pudo generar más de una incidencia u observación durante las sesiones.
 
 La identificación de avances individuales se gestionó mediante códigos alfanuméricos temporales y hojas de cotejo observacional en el aula, desvinculadas de nombres personales y destruidas tras consolidar las frecuencias agregadas. Las confirmaciones locales y ejecuciones de integración continua se verificaron directamente en los puestos de trabajo sin almacenar credenciales ni identificadores personales persistentes en repositorios públicos.
 
 El análisis de los registros cuantitativos fue de carácter descriptivo (frecuencias absolutas y porcentajes). Las notas de campo y las consultas se sometieron a un análisis temático cualitativo mediante codificación inductiva abierta, realizada de manera independiente por dos integrantes del equipo investigador sobre el conjunto completo de notas de campo e incidencias registradas durante ambas jornadas; las discrepancias iniciales de codificación se resolvieron por consenso en sesiones de revisión conjunta hasta consolidar una matriz unificada organizada en los tres patrones temáticos informados.
 
 ### 2.7. Consideraciones éticas
-La investigación analizó registros agregados de asistencia, métricas técnicas anonimizadas y notas de campo elaboradas durante una actividad formativa voluntaria. Los participantes fueron informados previamente sobre el propósito investigativo de la experiencia, el carácter voluntario de su participación y el tratamiento agregado de los resultados. No se recopilaron datos personales sensibles ni se publicaron identificadores que permitieran vincular los resultados con participantes individuales. La actividad no tuvo consecuencias académicas ni evaluativas. El estudio no contó con evaluación previa de un comité de ética institucional, circunstancia que constituye una limitación del diseño y que deberá considerarse en futuras implementaciones.
+La investigación analizó registros agregados de asistencia, métricas técnicas anonimizadas y notas de campo elaboradas en el marco de una actividad formativa voluntaria. Al inicio de los encuentros, se comunicó a los asistentes el propósito pedagógico y de indagación descriptiva de la experiencia, el carácter enteramente voluntario de su intervención y el tratamiento agregado y anónimo de los registros generados. No se recolectaron datos personales sensibles ni se publicaron identificadores que permitieran asociar desempeños o consultas con participantes individuales. Asimismo, la actividad no tuvo consecuencias académicas, laborales ni evaluativas para los asistentes. El estudio no contó con evaluación previa ni certificación de exención por parte de un comité de ética institucional, aspecto que se declara de manera transparente como limitación del diseño y que deberá protocolizarse formalmente en futuros desarrollos.
 
 ---
 
@@ -131,14 +131,14 @@ La Tabla 1 resume los niveles de progresión observados entre los participantes 
 | Envío exitoso de cambios a GitHub (*push*) | 6 | 8,6 % |
 | Culminación integral autónoma del flujo de integración continua (100 pts) | 1 | 1,4 % |
 
-*Nota.* Las categorías no representan etapas mutuamente excluyentes ni necesariamente acumulativas. El cuestionario web interactivo también estuvo disponible mediante acceso directo desde el navegador (sin requerir clonación previa del repositorio). Los datos de ejecuciones de integración continua se obtuvieron de los registros de GitHub Actions. El acceso al repositorio, la clonación, la ejecución local de scripts y la realización de confirmaciones de cambios fueron registrados mediante observación directa y asistencia técnica en el aula. Se consideró culminación autónoma la obtención de 100 puntos en GitHub Actions durante el horario sincrónico del taller, sin intervención directa del equipo capacitador sobre el equipo, los archivos o los comandos ejecutados por el participante.
+*Nota.* Elaboración propia a partir de los registros de GitHub Actions y de las hojas de cotejo observacional en el aula. Las categorías no representan etapas mutuamente excluyentes ni necesariamente acumulativas. El cuestionario web interactivo también estuvo disponible mediante acceso directo desde el navegador (sin requerir clonación previa del repositorio). Los datos de ejecuciones de integración continua se obtuvieron de los registros de GitHub Actions. El acceso al repositorio, la clonación, la ejecución local de scripts y la realización de confirmaciones de cambios fueron registrados mediante observación directa y asistencia técnica en el aula. Se consideró culminación autónoma la obtención de 100 puntos en GitHub Actions durante el horario sincrónico del taller, sin intervención directa del equipo capacitador sobre el equipo, los archivos o los comandos ejecutados por el participante.
 
 Como se observa en la Tabla 1, mientras que el 74,3 % de los asistentes resolvió con éxito las actividades conceptuales provistas mediante la interfaz web desacoplada (`index.html`), únicamente 6 personas (8,6 %) lograron sincronizar cambios remotos hacia GitHub, y **un único participante (1,4 %) completó de manera plenamente autónoma la totalidad de los requisitos verificados por GitHub Actions (100 puntos)** durante el horario del taller.
 
 ### 3.3. Factores asociados a la adopción y barreras emergentes (PI3)
 El análisis temático de las notas de campo y las consultas de los participantes permitió identificar tres patrones recurrentes asociados con la brecha observada en la culminación del flujo técnico:
 
-1. **Fricción instrumental con el ecosistema de control de versiones (Git/CLI):** La barrera más recurrentemente registrada en las notas de campo (n = 28 incidencias documentadas) no estuvo vinculada con la comprensión pedagógica de MCP, sino con incidentes instrumentales durante el uso de la terminal: errores en la autenticación de cuentas mediante tokens de acceso personal en GitHub, fallas de sintaxis en comandos de consola (`git commit -m`) y desorientación ante estados de bifurcación o ramas desacopladas (*detached HEAD*).
+1. **Fricción instrumental con el ecosistema de control de versiones (Git/CLI):** La categoría de barrera con mayor frecuencia de incidencias registradas en las notas de campo (n = 28 incidencias documentadas) no estuvo vinculada con la comprensión pedagógica de MCP, sino con incidentes instrumentales durante el uso de la terminal: errores en la autenticación de cuentas mediante tokens de acceso personal en GitHub, fallas de sintaxis en comandos de consola (`git commit -m`) y desorientación ante estados de bifurcación o ramas desacopladas (*detached HEAD*).
 2. **Modalidad de participación predominantemente observacional:** Se registraron casos reiterados (n = 21 observaciones) de participantes que siguieron las demostraciones del instructor en pantalla, tomaron notas metodológicas y postergaron la configuración en sus propios equipos, manifestando explícitamente su preferencia por diferir la ejecución técnica para una instancia asincrónica posterior sin presión temporal.
 3. **Disposición favorable hacia interfaces interactivas desacopladas:** Se observó una marcada fluidez operativa (n = 15 registros positivos) cuando los participantes interactuaron con el cuestionario y los recursos didácticos web locales en HTML/JS. Al no requerir dependencias de compilación ni comandos de consola, estos recursos permitieron a los asistentes validar conceptos algorítmicos y de evaluación sin experimentar bloqueos técnicos.
 
@@ -149,7 +149,7 @@ Estos patrones fundamentaron tres necesidades de andamiaje: una ruta preliminar 
 ## 4. DISCUSIÓN
 
 ### 4.1. La brecha de instrumentación (*Tooling Gap*) como factor crítico
-El marcado contraste entre la elevada tasa de asistencia de la cohorte (87,5 %) y la baja culminación sincrónica del flujo automatizado en GitHub Actions (1,4 %) constituye el hallazgo empírico más relevante de la experiencia.
+El marcado contraste entre la elevada tasa de asistencia de la cohorte (87,5 %) y la baja culminación sincrónica del flujo automatizado en GitHub Actions (1,4 %) constituye el resultado descriptivo más destacado de la experiencia.
 
 Los resultados de este estudio sugieren que la incorporación simultánea de herramientas profesionales de integración continua y control de versiones puede introducir una carga instrumental secundaria que compite con los objetivos pedagógicos centrales del taller. Cuando se intenta capacitar en el diseño de agentes de IA y se exige simultáneamente el dominio de flujos completos de Git y terminal, la fricción instrumental puede dificultar la apropiación pedagógica.
 
@@ -166,17 +166,17 @@ La experiencia respalda el uso de los agentes como asistentes de diagnóstico pr
 Delegar la retroalimentación final directamente en un modelo generativo sin intervención humana vulnera el principio de responsabilidad pedagógica e incrementa la desprotección del estudiante ante eventuales sesgos algorítmicos. La supervisión activa no representa un obstáculo burocrático, sino la condición indispensable para que la tecnología opere de manera ética y formativamente significativa.
 
 ### 4.4. Implicaciones para la formación docente en informática
-La interacción entre docentes de ingeniería en ejercicio y futuros formadores en informática educativa permitió observar aportes potencialmente complementarios para la innovación educativa. Las notas de campo sugirieron diferencias de énfasis entre ambos perfiles: en las intervenciones de participantes vinculados con ingeniería se registraron consultas relacionadas con el control sintáctico y el aislamiento de entornos, mientras que entre los perfiles de formación pedagógica fueron recurrentes las preguntas sobre rúbricas, lenguaje de retroalimentación y accesibilidad. Integrar ambas miradas resulta imprescindible para evitar tanto el determinismo técnico como la adopción pedagógica ingenua de la IA.
+La interacción entre docentes de ingeniería en ejercicio y futuros formadores en informática educativa permitió observar aportes potencialmente complementarios para la innovación educativa. De manera exploratoria, y sin pretensión de comparación sistemática entre grupos, las notas de campo sugirieron diferencias de énfasis: en las intervenciones de participantes vinculados con ingeniería se registraron consultas relacionadas con el control sintáctico y el aislamiento de entornos, mientras que entre los perfiles de formación pedagógica fueron recurrentes las preguntas sobre rúbricas, lenguaje de retroalimentación y accesibilidad. Integrar ambas miradas resulta relevante para evitar tanto el determinismo técnico como la adopción pedagógica ingenua de la IA.
 
 ### 4.5. Limitaciones del estudio
 Los hallazgos del presente trabajo deben interpretarse a la luz de diversas limitaciones metodológicas:
-1. **Muestra intencional y localizada:** La población del taller estuvo conformada por una muestra no probabilística de participantes pertenecientes a dos instituciones de una misma región, lo que restringe la generalización de los resultados.
+1. **Muestra no probabilística y autoseleccionada:** La población del taller estuvo conformada por una muestra no probabilística y autoseleccionada de participantes voluntarios pertenecientes a dos instituciones de una misma región, lo que restringe la generalización de los resultados y refleja la predisposición inicial de quienes respondieron a la convocatoria.
 2. **Diseño descriptivo sin grupo de comparación:** La investigación no contempló un grupo de control ni mediciones de tipo pretest/postest para evaluar cuantitativamente el aprendizaje o la ganancia de competencias en comparación con metodologías formativas tradicionales.
 3. **Ausencia de mediciones de línea de base:** No se aplicó un instrumento previo estandarizado para cuantificar el nivel de competencia de los participantes en herramientas de control de versiones (Git) o en el uso de IA generativa, lo que impide aislar con precisión el peso relativo de las habilidades previas sobre la baja culminación del pipeline.
 4. **Restricción temporal del taller:** La duración de diez horas reloj concentradas en dos jornadas consecutivas pudo haber acentuado la sobrecarga cognitiva, limitando el tiempo disponible para la resolución autónoma de contingencias técnicas complejas.
 5. **Doble rol del equipo investigador:** La participación de los investigadores como diseñadores de la arquitectura, docentes a cargo del pilotaje y capacitadores en el taller introduce un potencial sesgo de observación, atenuado parcialmente mediante el uso de registros técnicos automatizados.
 6. **Carácter preliminar del análisis temporal:** Las observaciones sobre el ahorro de tiempo docente en la revisión son cualitativas y proceden de la experiencia de pilotaje, no habiendo sido sometidas a un protocolo formal de cronometraje y comparación experimental.
-7. **Ausencia de dictamen previo por comité de ética:** Si bien se garantizó la anonimización, el carácter voluntario y la comunicación previa del propósito pedagógico, la intervención formativa no contó con una certificación formal de exención emitida por un comité de ética institucional, constituyendo un aspecto a protocolizar en futuras investigaciones.
+7. **Ausencia de dictamen previo por comité de ética:** Si bien se garantizó la anonimización, el carácter voluntario y la comunicación previa del propósito formativo y analítico, la experiencia no contó con una evaluación previa ni con una certificación formal de exención emitida por un comité de ética institucional, constituyendo un aspecto a protocolizar y gestionar formalmente en futuras investigaciones.
 
 ---
 
@@ -198,23 +198,18 @@ Como líneas de trabajo futuro se plantean:
 
 ## 6. DECLARACIONES OBLIGATORIAS
 
-### Declaración de financiamiento
-La información identificatoria sobre la fuente institucional de financiamiento se ha omitido temporalmente para preservar la evaluación a doble ciego y fue comunicada al Comité Editorial mediante la plataforma. Se incorporará en la versión aceptada.
+### Declaración de financiamiento y apoyo institucional
+La información identificatoria sobre la fuente institucional de apoyo, financiamiento y acreditación del proyecto se ha omitido temporalmente para preservar la evaluación a doble ciego y fue comunicada al Comité Editorial mediante la plataforma OJS. Se incorporará formalmente en la versión aceptada.
 
 ### Declaración sobre el uso de inteligencia artificial
-Durante la preparación de este trabajo, los autores utilizaron Antigravity IDE y Claude 3.7 Sonnet para asistir en la organización preliminar del texto, la revisión gramatical del manuscrito en español y la traducción del resumen al inglés. Los autores revisaron y editaron críticamente el contenido generado o reformulado, verificaron las referencias y los datos informados, y asumen plena responsabilidad por el contenido final de la publicación.
+Durante la preparación de este trabajo, los autores utilizaron el entorno Antigravity IDE, operando con el modelo Claude 3.7 Sonnet, para asistir en la organización preliminar del texto, la revisión estilística del manuscrito en español y la traducción del resumen al inglés. Los autores revisaron y editaron críticamente el contenido generado o reformulado, verificaron las referencias y los datos informados, y asumen plena responsabilidad por el contenido final de la publicación.
 
 ### Consideraciones éticas
-La investigación analizó registros agregados de asistencia, métricas técnicas anonimizadas y notas de campo elaboradas durante una actividad formativa voluntaria. Los participantes fueron informados previamente sobre el propósito investigativo de la experiencia, el carácter voluntario de su participación y el tratamiento agregado de los resultados. No se recopilaron datos personales sensibles ni se publicaron identificadores que permitieran vincular los resultados con participantes individuales. La actividad no tuvo consecuencias académicas ni evaluativas. El estudio no contó con evaluación previa de un comité de ética institucional, circunstancia que constituye una limitación del diseño y que deberá considerarse en futuras implementaciones.
+La investigación analizó registros agregados de asistencia, métricas técnicas anonimizadas y notas de campo elaboradas en el marco de una actividad formativa voluntaria. Al inicio de los encuentros, se comunicó a los asistentes el propósito pedagógico y de indagación descriptiva de la experiencia, el carácter enteramente voluntario de su intervención y el tratamiento agregado y anónimo de los registros generados. No se recolectaron datos personales sensibles ni se publicaron identificadores que permitieran asociar desempeños o consultas con participantes individuales. Asimismo, la actividad no tuvo consecuencias académicas, laborales ni evaluativas para los asistentes. El estudio no contó con evaluación previa ni certificación de exención por parte de un comité de ética institucional, aspecto que se declara de manera transparente como limitación del diseño y que deberá protocolizarse formalmente en futuros desarrollos.
 
 ---
 
-## 7. AGRADECIMIENTOS
-*(Esta sección se incorporará formalmente tras la culminación del proceso de evaluación por pares a doble ciego).*
-
----
-
-## 8. REFERENCIAS BIBLIOGRÁFICAS
+## 7. REFERENCIAS BIBLIOGRÁFICAS
 
 Anthropic. (2024). *Model Context Protocol: An open standard for connecting AI models to data sources*. Anthropic Engineering Blog. https://www.anthropic.com/news/model-context-protocol
 

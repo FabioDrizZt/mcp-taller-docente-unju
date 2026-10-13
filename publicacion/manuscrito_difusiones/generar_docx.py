@@ -138,7 +138,7 @@ for line in lines:
         p.paragraph_format.space_after = Pt(8)
         run = p.add_run(t_text)
         run.bold = True
-        run.font.size = Pt(13)
+        run.font.size = Pt(12)
         run.font.name = 'Times New Roman'
         continue
 
