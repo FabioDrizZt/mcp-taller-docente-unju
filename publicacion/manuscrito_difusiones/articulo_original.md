@@ -201,10 +201,10 @@ Como líneas de trabajo futuro se plantean:
 ### Declaración de financiamiento
 La información identificatoria sobre la fuente institucional de financiamiento se ha omitido temporalmente para preservar la evaluación a doble ciego y fue comunicada al Comité Editorial mediante la plataforma. Se incorporará en la versión aceptada.
 
-### Declaración sobre uso de inteligencia artificial
+### Declaración sobre el uso de inteligencia artificial
 Durante la preparación de este trabajo, los autores utilizaron Antigravity IDE y Claude 3.7 Sonnet para asistir en la organización preliminar del texto, la revisión gramatical del manuscrito en español y la traducción del resumen al inglés. Los autores revisaron y editaron críticamente el contenido generado o reformulado, verificaron las referencias y los datos informados, y asumen plena responsabilidad por el contenido final de la publicación.
 
-### Aprobación ética
+### Consideraciones éticas
 La investigación analizó registros agregados de asistencia, métricas técnicas anonimizadas y notas de campo elaboradas durante una actividad formativa voluntaria. Los participantes fueron informados previamente sobre el propósito investigativo de la experiencia, el carácter voluntario de su participación y el tratamiento agregado de los resultados. No se recopilaron datos personales sensibles ni se publicaron identificadores que permitieran vincular los resultados con participantes individuales. La actividad no tuvo consecuencias académicas ni evaluativas. El estudio no contó con evaluación previa de un comité de ética institucional, circunstancia que constituye una limitación del diseño y que deberá considerarse en futuras implementaciones.
 
 ---
