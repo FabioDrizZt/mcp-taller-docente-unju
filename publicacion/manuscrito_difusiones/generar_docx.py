@@ -181,7 +181,7 @@ for line in lines:
         continue
 
     # Formato especial APA 7 para títulos de figuras y tablas (en cursiva justo después del número)
-    if raw.startswith('*Arquitectura sociotécnica') or raw.startswith('*Progresión de los participantes'):
+    if raw.startswith('*Arquitectura sociotécnica') or raw.startswith('*Participación de los asistentes') or raw.startswith('*Progresión de los participantes'):
         p = doc.add_paragraph()
         p.paragraph_format.line_spacing = 1.0
         p.paragraph_format.space_before = Pt(0)
