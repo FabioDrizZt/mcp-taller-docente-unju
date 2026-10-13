@@ -36,7 +36,7 @@ style.paragraph_format.space_before = Pt(0)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 md_path = os.path.join(script_dir, 'articulo_original.md')
 fig_path = os.path.join(script_dir, 'Figura_1_Arquitectura_MCP_HITL.png')
-out_docx = os.path.join(script_dir, 'articulo_original.docx')
+out_docx = os.path.join(script_dir, 'articulo_tecnico.docx')
 
 with open(md_path, 'r', encoding='utf-8') as f:
     lines = f.readlines()
@@ -210,6 +210,4 @@ for line in lines:
     add_formatted_runs(p, raw, base_font_size=12)
 
 doc.save(out_docx)
-tecnico_docx = os.path.join(script_dir, 'articulo_tecnico.docx')
-doc.save(tecnico_docx)
-print(f"Éxito: Archivos Word generados y actualizados en {out_docx} y {tecnico_docx}")
+print(f"Éxito: Archivo Word generado y actualizado en {out_docx}")
