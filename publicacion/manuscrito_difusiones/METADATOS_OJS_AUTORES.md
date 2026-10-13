@@ -132,8 +132,8 @@ Agradecemos su atención y quedamos a su entera disposición.
 - [x] **Sección en OJS:** Artículos Técnicos (cumple con la pauta de 10 a 15 páginas).
 - [x] **Archivo principal (.docx):** Anonimizado mediante eliminación de nombres, afiliaciones y metadatos identificatorios directos; propiedades internas con título `Artículo Técnico - DIFUSIONES`, autor/comentarios vacíos, títulos y subtítulos en 12 pt Times New Roman.
 - [x] **Resumen y Abstract:** Cumplen estrictamente con el rango reglamentario de 250 a 300 palabras (Resumen: 298 palabras; Abstract: 260 palabras).
-- [x] **Tablas:** Formato nativo de Word según APA 7ª (sin líneas verticales, notas a 10 pt indicando elaboración propia y fuente).
-- [x] **Figura 1 (.png):** 300 DPI reales (1800 × 1260 px, 15.24 cm de ancho) adjunta como archivo complementario independiente.
+- [x] **Tablas:** Formato nativo de Word según APA 7ª (sin líneas verticales, notas a 10 pt indicando elaboración propia y fuente), con fila 1 marcada estructuralmente como encabezado repetible (`tblHeader`) y prevención de corte (`cantSplit`).
+- [x] **Figura 1 (.png):** 300 DPI reales (1800 × 1260 px, 15.24 cm de ancho) adjunta como archivo complementario independiente e incrustada en DOCX con texto alternativo descriptivo (*Alt Text*) para accesibilidad.
 - [x] **Metadatos OJS:** 5 autores cargados en el orden oficial con afiliación institucional y biografías breves (<150 palabras).
 - [x] **Declaración sobre uso de IA:** Incorporada en el manuscrito identificando herramientas (Antigravity IDE, Claude, Gemini, Copilot) y propósitos, con salvaguarda explícita de no generación de datos ni referencias y asunción plena de autoría humana.
 - [x] **Comentarios al editor:** Incluyen declaración explícita de conflictos de interés, financiamiento institucional, encuadre de validación técnica, uso asistido de IA y archivos adjuntos.

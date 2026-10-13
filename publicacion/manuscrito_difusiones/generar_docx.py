@@ -108,6 +108,13 @@ for line in lines:
             t = doc.add_table(rows=len(rows_data), cols=len(rows_data[0]))
             t.alignment = WD_TABLE_ALIGNMENT.CENTER
             for r_idx, row in enumerate(rows_data):
+                # Accesibilidad estructural: evitar división de filas entre páginas
+                trPr = t.rows[r_idx]._tr.get_or_add_trPr()
+                trPr.append(parse_xml(r'<w:cantSplit xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"/>'))
+                if r_idx == 0:
+                    # Accesibilidad estructural: marcar fila 0 como encabezado de tabla repetible
+                    trPr.append(parse_xml(r'<w:tblHeader xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"/>'))
+                
                 for c_idx, val in enumerate(row):
                     cell = t.cell(r_idx, c_idx)
                     p = cell.paragraphs[0]
@@ -133,7 +140,7 @@ for line in lines:
     if not raw or raw == '---':
         continue
         
-    # Inserción de Figura 1 (reemplazo de marcador)
+    # Inserción de Figura 1 con Texto Alternativo para accesibilidad
     if '[Insertar Figura 1 aquí]' in raw:
         if os.path.exists(fig_path):
             p = doc.add_paragraph()
@@ -141,7 +148,11 @@ for line in lines:
             p.paragraph_format.space_before = Pt(6)
             p.paragraph_format.space_after = Pt(6)
             run = p.add_run()
-            run.add_picture(fig_path, width=Cm(15.2))
+            picture = run.add_picture(fig_path, width=Cm(15.2))
+            # Texto alternativo y título en propiedades internas del objeto (Alt Text para lectores de pantalla)
+            docPr = picture._inline.docPr
+            docPr.attrib['title'] = "Figura 1. Arquitectura sociotécnica MCP y supervisión docente activa"
+            docPr.attrib['descr'] = "Diagrama de la arquitectura sociotécnica de evaluación continua asistida por agentes, organizada en tres capas: gobernanza contextual, interoperabilidad mediante MCP y supervisión docente."
         continue
 
     # Título principal (Centrado, Mayúsculas, Negrita)
