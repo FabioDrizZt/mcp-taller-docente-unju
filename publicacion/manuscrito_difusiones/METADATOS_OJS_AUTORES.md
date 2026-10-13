@@ -118,7 +118,9 @@ Declaramos formalmente que:
 
 5. En relación con las consideraciones éticas, la sección de evaluación empírica corresponde a una validación técnica y de observabilidad de la arquitectura en un taller formativo voluntario; los registros analizados proceden de telemetría de repositorios y notas cualitativas de incidencias instrumentales de software, resguardando la anonimización integral sin datos personales sensibles ni experimentación clínica. Se declara abiertamente que la actividad no contó con evaluación previa ni con certificación formal de exención por un comité de ética institucional, circunstancia asumida como una limitación procedimental del diseño para la cual se encuentra en gestión un dictamen de encuadre institucional ante la autoridad académica competente.
 
-6. Se adjunta de forma separada la Figura 1 en formato PNG de alta resolución (300 DPI reales, ancho 15.24 cm).
+6. Se declara el uso de herramientas de inteligencia artificial (Antigravity IDE con modelos Claude 3.7 Sonnet y Gemini, y Microsoft Copilot) exclusivamente para asistencia preliminar de organización, estilo, traducción del abstract y cotejo de directrices editoriales, sin haber sido utilizadas para la generación de datos empíricos ni referencias bibliográficas.
+
+7. Se adjunta de forma separada la Figura 1 en formato PNG de alta resolución (300 DPI reales, ancho 15.24 cm).
 
 Agradecemos su atención y quedamos a su entera disposición.
 ```
@@ -133,4 +135,5 @@ Agradecemos su atención y quedamos a su entera disposición.
 - [x] **Tablas:** Formato nativo de Word según APA 7ª (sin líneas verticales, notas a 10 pt indicando elaboración propia y fuente).
 - [x] **Figura 1 (.png):** 300 DPI reales (1800 × 1260 px, 15.24 cm de ancho) adjunta como archivo complementario independiente.
 - [x] **Metadatos OJS:** 5 autores cargados en el orden oficial con afiliación institucional y biografías breves (<150 palabras).
-- [x] **Comentarios al editor:** Incluyen declaración explícita de conflictos de interés, financiamiento institucional, encuadre de validación técnica y archivos adjuntos.
+- [x] **Declaración sobre uso de IA:** Incorporada en el manuscrito identificando herramientas (Antigravity IDE, Claude, Gemini, Copilot) y propósitos, con salvaguarda explícita de no generación de datos ni referencias y asunción plena de autoría humana.
+- [x] **Comentarios al editor:** Incluyen declaración explícita de conflictos de interés, financiamiento institucional, encuadre de validación técnica, uso asistido de IA y archivos adjuntos.
