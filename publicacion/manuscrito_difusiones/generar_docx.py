@@ -5,6 +5,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import parse_xml
 import re
 import os
+import sys
 
 doc = docx.Document()
 
@@ -49,9 +50,10 @@ h2_style.font.color.rgb = RGBColor(0, 0, 0)
 h2_style.paragraph_format.line_spacing = 1.0
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-md_path = os.path.join(script_dir, 'articulo_original.md')
+# Uso: python generar_docx.py [archivo.md] [salida.docx]  (por defecto: manuscrito principal)
+md_path = os.path.join(script_dir, sys.argv[1] if len(sys.argv) > 1 else 'articulo_original.md')
 fig_path = os.path.join(script_dir, 'Figura_1_Arquitectura_MCP_HITL.png')
-out_docx = os.path.join(script_dir, 'articulo_tecnico.docx')
+out_docx = os.path.join(script_dir, sys.argv[2] if len(sys.argv) > 2 else 'articulo_tecnico.docx')
 
 with open(md_path, 'r', encoding='utf-8') as f:
     lines = f.readlines()
